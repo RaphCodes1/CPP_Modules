@@ -8,7 +8,7 @@ OBJ = $(SRC:.cpp=.o)
 all:$(NAME)
 
 $(NAME): $(OBJ)
-$(GCC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(GCC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
 %.o:%.cpp
 	$(GCC) $(GCCFLAGS) -c $< -o $@
@@ -16,7 +16,7 @@ $(GCC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 clean:
 	rm -f $(OBJ)
 
-fclean:
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
