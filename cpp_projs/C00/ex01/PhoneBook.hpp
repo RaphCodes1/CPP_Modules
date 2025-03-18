@@ -9,7 +9,6 @@ class PhoneBook
 {   
     private:
         std::string name;
-        std::string contact[5];
         std::string truncate(const std::string& str);
     public:
         static int counter;
@@ -18,10 +17,9 @@ class PhoneBook
         ~PhoneBook();
         int add_contact(std::string input[]);
         int search_func();
+        int number_check(std::string str);
+        int valid_contact(std::string contact[]);
 }; 
 
-int number_check(std::string str);
-int char_check(std::string str);
-int valid_contact(std::string contact[]);
 
 #endif

@@ -1,6 +1,6 @@
 NAME = my_awesome_phonebook
 
-SRC = main.cpp Phonebook.cpp Phone_utils.cpp
+SRC = main.cpp PhoneBook.cpp Phone_utils.cpp
 GCC = g++ 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 

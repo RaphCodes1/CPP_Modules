@@ -2,8 +2,10 @@
 #include <string>
 #include "PhoneBook.hpp"
 
-class Contact
+class Contact:
 {
+    private:
+        std::string info[5]
     public:
 
-};
+}

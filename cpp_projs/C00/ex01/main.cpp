@@ -1,4 +1,4 @@
-#include "Header.hpp"
+#include "PhoneBook.hpp"
 
 int add_function(PhoneBook pb)
 {
@@ -21,6 +21,7 @@ int add_function(PhoneBook pb)
     std::cout << "Info succesfully saved!\n";
     return (1);
 }
+
 int main()
 {
     PhoneBook acc1("Phonebook");
