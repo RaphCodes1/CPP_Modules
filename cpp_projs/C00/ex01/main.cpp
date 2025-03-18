@@ -1,47 +1,23 @@
 #include "PhoneBook.hpp"
-
-int add_function(PhoneBook pb)
-{
-    std::string input[5];
-
-    std::cout << "First Name: ";
-    std::cin >> input[0];
-    std::cout << "Last Name: ";
-    std::cin >> input[1];
-    std::cout << "Nickname: ";
-    std::cin >> input[2];
-    std::cout << "Phone Number: ";
-    std::cin >> input[3];
-    std::cin.ignore();
-    std::cout << "Darkest Secret: ";
-    getline(std::cin, input[4]);
-    
-    if(!pb.add_contact(input))
-        return (0);
-    std::cout << "Info succesfully saved!\n";
-    return (1);
-}
+#include "Contact.hpp"
 
 int main()
 {
-    PhoneBook acc1("Phonebook");
+    PhoneBook phonebook;
+    Contact contact;
     std::string choice;
     int end = 0;
+    // std::cin.ignore();
     while(end == 0)
     {
         std::cout << "ADD, SEARCH and EXIT: ";
-        std::cin >> choice;
-        
+        std::getline(std::cin, choice);
+        if(std::cin.eof())
+            exit(0);
         if(choice == "ADD")
-        {
-            if(!add_function(acc1))
-                return (1);
-        }
+            contact.add_function(phonebook);
         else if(choice == "SEARCH")
-        {   
-            if(!acc1.search_func())
-                return(1);
-        }
+            phonebook.search_func();
         else if(choice == "EXIT")
         {   
             std::cout << "Thanks for using PhoneBook\n";

@@ -2,10 +2,13 @@
 #include <string>
 #include "PhoneBook.hpp"
 
-class Contact:
+
+class Contact
 {
     private:
-        std::string info[5]
+        std::string input[5];
+        std::string text_output[5];
     public:
-
-}
+        int add_function(PhoneBook pb);
+        void text_output_init();
+};
