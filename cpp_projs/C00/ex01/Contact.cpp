@@ -12,6 +12,16 @@ void Contact::text_output_init()
     text_output[4] = "Darkest secret: ";
 }
 
+int space_only(std::string str)
+{
+    for(int i = 0; str[i] != '\0'; i++)
+    {
+        if(str[i] != ' ')
+            return (1);
+    }
+    return (0);
+}
+
 int Contact::add_function(PhoneBook pb)
 {   
     int i = 0;
@@ -24,7 +34,7 @@ int Contact::add_function(PhoneBook pb)
         std::getline(std::cin, input[i]);
         if(std::cin.eof())
             exit(0);
-        if(input[i].empty())
+        if(input[i].empty() || !space_only(input[i]))
         {
             std::cout << "enter valid value\n";
             all_true = 0;
