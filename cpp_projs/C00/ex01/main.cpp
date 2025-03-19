@@ -7,7 +7,6 @@ int main()
     Contact contact;
     std::string choice;
     int end = 0;
-    // std::cin.ignore();
     while(end == 0)
     {
         std::cout << "ADD, SEARCH and EXIT: ";

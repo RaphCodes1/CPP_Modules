@@ -58,7 +58,6 @@ int PhoneBook::search_func()
             std::cout << "\n";
         }
     }
-    // std::cin.ignore();
     while (end == 0)
     {   
         std::cout << "Enter Index or EXIT: ";

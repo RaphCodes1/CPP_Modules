@@ -17,14 +17,13 @@ int Contact::add_function(PhoneBook pb)
     int i = 0;
     int all_true;
     text_output_init();
-    // std::cin.ignore();
     while(i < 5)
     {   
         all_true = 1;
         std::cout << text_output[i];
         std::getline(std::cin, input[i]);
         if(std::cin.eof())
-            return (0);
+            exit(0);
         if(input[i].empty())
         {
             std::cout << "enter valid value\n";
