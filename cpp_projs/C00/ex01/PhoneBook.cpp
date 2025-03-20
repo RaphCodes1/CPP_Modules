@@ -4,6 +4,14 @@ int PhoneBook::counter = 0;
 
 std::string PhoneBook::people[8][5] = {};
 
+PhoneBook::PhoneBook(){
+    std::cout << "RAHHHH" << std::endl;
+}
+
+PhoneBook::~PhoneBook(){
+    std::cout << "BAAAAHHH" << std::endl;
+}
+
 std::string PhoneBook::truncate(const std::string&  str)
 {
     return (str.length() > 10) ? str.substr(0, 9) + "." : str;
@@ -63,7 +71,7 @@ int PhoneBook::search_func()
         std::cout << "Enter Index or EXIT: ";
         std::getline(std::cin,index);
         if(std::cin.eof())
-            exit(0);
+            return (0);
         if(index == "EXIT")
             return (1);
         if((index[0] >= '0' && index[0] <= '9') && index[1] == '\0')

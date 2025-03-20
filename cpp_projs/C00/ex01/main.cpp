@@ -3,6 +3,9 @@
 
 int main()
 {
+    {
+        PhoneBook a;
+    }
     PhoneBook phonebook;
     Contact contact;
     std::string choice;
@@ -12,7 +15,7 @@ int main()
         std::cout << "ADD, SEARCH and EXIT: ";
         std::getline(std::cin, choice);
         if(std::cin.eof())
-            exit(0);
+            return (1);
         if(choice == "ADD")
             contact.add_function(phonebook);
         else if(choice == "SEARCH")

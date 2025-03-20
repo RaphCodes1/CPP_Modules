@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cstdlib>
 
 class PhoneBook
 {   
@@ -14,6 +15,8 @@ class PhoneBook
     public:
         static int counter;
         static std::string people[8][5];
+        PhoneBook();
+        ~PhoneBook();
         int add_contact(std::string input[]);
         int search_func();
         int number_check(std::string str);

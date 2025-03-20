@@ -33,7 +33,7 @@ int Contact::add_function(PhoneBook pb)
         std::cout << text_output[i];
         std::getline(std::cin, input[i]);
         if(std::cin.eof())
-            exit(0);
+            return (0);
         if(input[i].empty() || !space_only(input[i]))
         {
             std::cout << "enter valid value\n";
