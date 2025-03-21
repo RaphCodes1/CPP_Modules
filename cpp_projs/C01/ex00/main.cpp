@@ -1,11 +1,17 @@
-#include <iostream>
 #include "Zombie.hpp"
+#include "randomChump.hpp"
+#include "newZombie.hpp"
 
 int main()
 {
-    Zombie  a;
-    Zombie  b;
+    Zombie zombie1("CHARGER");
+    zombie1.announce();
 
-    a + b;
-    std::cout << a;
+    zombie1.randomChump("WITCH");
+    
+    Zombie* zombiePtr = newZombie("HUNTER");
+    zombiePtr->announce();
+    delete zombiePtr;
+
+    return (0);
 }
