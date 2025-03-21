@@ -4,13 +4,9 @@ int PhoneBook::counter = 0;
 
 std::string PhoneBook::people[8][5] = {};
 
-PhoneBook::PhoneBook(){
-    std::cout << "RAHHHH" << std::endl;
-}
+PhoneBook::PhoneBook(){;}
 
-PhoneBook::~PhoneBook(){
-    std::cout << "BAAAAHHH" << std::endl;
-}
+PhoneBook::~PhoneBook(){;}
 
 std::string PhoneBook::truncate(const std::string&  str)
 {

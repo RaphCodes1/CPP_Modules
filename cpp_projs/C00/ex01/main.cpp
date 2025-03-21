@@ -3,9 +3,6 @@
 
 int main()
 {
-    {
-        PhoneBook a;
-    }
     PhoneBook phonebook;
     Contact contact;
     std::string choice;
