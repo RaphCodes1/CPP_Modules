@@ -1,6 +1,4 @@
 #include "Zombie.hpp"
-#include "randomChump.hpp"
-#include "newZombie.hpp"
 
 void Zombie::announce()
 {   
