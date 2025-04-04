@@ -11,6 +11,7 @@ class Fixed{
         ~Fixed();
         Fixed(int const num);
         Fixed(float const floatNum);
+        Fixed(const Fixed &copy);
         Fixed &operator=(const Fixed&copy);
         friend std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
         float toFloat(void)const;

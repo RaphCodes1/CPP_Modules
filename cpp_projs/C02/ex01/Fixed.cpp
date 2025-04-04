@@ -20,16 +20,29 @@ Fixed::Fixed(float const floatNum){
     number = roundf(floatNum * (1 << bits));
 }
 
+Fixed::Fixed(const Fixed &copy)
+{   
+    std::cout << "Copy constructor called" << std::endl;
+    this->isFloat = copy.isFloat;
+    this->number = copy.number;
+}
+
 Fixed &Fixed::operator=(const Fixed &copy)
-{
-    std::cout << "Copy assignment operator called" << std::endl;
+{   
+    std::cout << "Copy assignment operater called" << std::endl;
     if(this != &copy)
-        number = copy.number;
+    {
+        this->isFloat = copy.isFloat;
+        this->number = copy.number;
+    }
     return *this;
 }
 
 int Fixed::toInt(void)const{
-    return number >> bits;
+    if(isFloat)
+        return number >> bits;
+    else
+        return number;
 }
 
 float Fixed::toFloat(void) const {
@@ -38,8 +51,6 @@ float Fixed::toFloat(void) const {
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {   
-    std::cout << "isFloat: " << fixed.isFloat << std::endl;
-    // out << fixed.toFloat();
     if(fixed.isFloat == true)
         out << fixed.toFloat();
     else
