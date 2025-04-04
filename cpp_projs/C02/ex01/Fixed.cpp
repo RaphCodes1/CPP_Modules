@@ -46,7 +46,7 @@ int Fixed::toInt(void)const{
 }
 
 float Fixed::toFloat(void) const {
-    return (float)(number)/ (1 << bits);
+    return (float)(number) / (1 << bits);
 }
 
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
