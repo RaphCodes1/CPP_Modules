@@ -14,6 +14,10 @@ int main()
     Fixed const j(Fixed( 5.05f ) == Fixed( 5.05f ));
     Fixed const k(Fixed( 5.05f ) != Fixed( 2 ));
 
+    std::cout << "Static Min: " << Fixed::min(c,b) << std::endl; 
+    std::cout << "Static Max: " << Fixed::max(d,e) << std::endl; 
+    std::cout << "CONST Static Min: " << Fixed::minConst(c,b) << std::endl; 
+    std::cout << "CONST Static Max: " << Fixed::maxConst(d,e) << std::endl; 
     
     std::cout <<  "A is: " << a << std::endl;
     std::cout <<  "A is: " << ++a << std::endl;

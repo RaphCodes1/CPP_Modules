@@ -161,3 +161,23 @@ Fixed Fixed::operator--(int)
 {
     return Fixed(this->number--);
 }
+
+Fixed Fixed::min(Fixed a, Fixed b)
+{
+    return (a.number < b.number) ? Fixed(a.number):Fixed(b.number);
+}
+
+Fixed Fixed::max(Fixed a, Fixed b)
+{
+    return (a.number > b.number) ? Fixed(a.number):Fixed(b.number);
+}
+
+Fixed const Fixed::minConst(const Fixed a, const Fixed b)
+{
+    return (a.number < b.number) ? Fixed(a.number):Fixed(b.number);
+}
+
+Fixed const Fixed::maxConst(const Fixed a, const Fixed b)
+{
+    return (a.number > b.number) ? Fixed(a.number):Fixed(b.number);
+}
