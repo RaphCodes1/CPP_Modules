@@ -13,7 +13,10 @@ class Fixed{
         Fixed(float const floatNum);
         Fixed(const Fixed &copy);
         Fixed &operator=(const Fixed&copy);
-        friend std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
         float toFloat(void)const;
         int toInt(void)const;
-};
+        bool getFloatVal() const;
+        int  getNumVal() const;
+    };
+    
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);

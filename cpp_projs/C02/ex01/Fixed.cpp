@@ -49,12 +49,20 @@ float Fixed::toFloat(void) const {
     return (float)(number) / (1 << bits);
 }
 
+bool Fixed::getFloatVal() const{
+    return isFloat;
+}
+
+int Fixed::getNumVal() const{
+    return number;
+}
+
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 {   
-    if(fixed.isFloat == true)
+    if(fixed.getFloatVal())
         out << fixed.toFloat();
     else
-        out << fixed.number;
+        out << fixed.getNumVal();
     return out;
 }
 
