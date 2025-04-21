@@ -1,3 +1,6 @@
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
+
 #include <iostream>
 #include <string>
 #include "PhoneBook.hpp"
@@ -12,3 +15,5 @@ class Contact
         int add_function(PhoneBook pb);
         void text_output_init();
 };
+
+#endif

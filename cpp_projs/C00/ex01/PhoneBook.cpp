@@ -26,7 +26,7 @@ int PhoneBook::add_contact(std::string info[])
 {
     if(!valid_contact(info))
         return (0);
-    if(counter == 7)
+    if(counter == 8)
         counter = 0;
     for(int i = 0; i < 5; i++)
         people[counter][i] = info[i];
@@ -44,7 +44,7 @@ void print_header()
 int PhoneBook::search_func()
 {
     int end = 0;
-    std::string index;
+    std::string              index;
     print_info();
     if(people[0]->empty())
     {
