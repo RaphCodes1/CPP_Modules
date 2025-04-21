@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <cstdlib>
+#include "Contact.hpp"
 
 class PhoneBook
 {   
@@ -12,16 +12,20 @@ class PhoneBook
         std::string name;
         std::string truncate(const std::string& str);
         std::string text_output[5];
+        std::string input[5];
+        Contact contact[8];
     public:
         static int counter;
-        static std::string people[8][5];
         PhoneBook();
         ~PhoneBook();
-        int add_contact(std::string input[]);
-        int search_func();
-        int number_check(std::string str);
-        int valid_contact(std::string contact[]);
-        void print_info();
+        void printHeader();
+        int addFunction();
+        int searchFunction();
+        void addContact();
+        int numCheck(std::string str);
+        int strCheck(std::string str);
+        int spaceOnly(std::string str);
+        void textOutInit();
 }; 
 
 

@@ -9,11 +9,19 @@
 class Contact
 {
     private:
-        std::string input[5];
-        std::string text_output[5];
+        std::string firstName;
+        std::string lastName;
+        std::string nickname;
+        std::string phoneNumber;
+        std::string darkestSecret;
+        std::string groupedInfo[5];
     public:
-        int add_function(PhoneBook pb);
-        void text_output_init();
+        Contact();
+        ~Contact();
+        void setGroupInfo();
+        std::string getInfo(int index);
+        void setVal(std::string value, int index);
+        bool isEmpty();
 };
 
 #endif
