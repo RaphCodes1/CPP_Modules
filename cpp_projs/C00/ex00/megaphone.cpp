@@ -9,7 +9,7 @@ int main(int ac, char **av)
     {   
         for(int i = 1; i < ac; i++)
         {   
-            for(int f = 0;f < av[i][f] != '\0'; f++)
+            for(int f = 0;av[i][f] != '\0'; f++)
                 std::cout << char(toupper(av[i][f]));
         }
         std::cout << std::endl;
