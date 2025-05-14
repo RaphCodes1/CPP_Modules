@@ -16,7 +16,7 @@ std::string replaceStr(std::string str, std::string toReplace, std::string repla
 void error_exit(std::string error_msg)
 {
     std::cerr << error_msg << std::endl;
-    exit(1);
+    return ;
 }
 
 bool has_permissions(std::string filename)
@@ -24,25 +24,36 @@ bool has_permissions(std::string filename)
     return(access(filename.c_str(), R_OK | W_OK) == 0);
 }
 
-void check_valid(std::string str)
+int check_valid(std::string str)
 {
-    if(std::any_of(str.begin(),str.end(), ::isspace))
-        error_exit("File Not valid!");
+    for(size_t i = 0; i < str.length(); i++)
+    {
+        if(std::isspace(static_cast<unsigned char>(str[i])))
+        {
+            error_exit("File Not Valid!");
+            return (0);
+        }
+    }
     if(!has_permissions(str))
-        error_exit("File Does Not Have Permissions!");
+    {
+        error_exit("Invalid File!");
+        return (0);
+    }
+    return (1);
 }
 
 int main(int ac, char **av)
 {   
     if(ac == 4)
     {   
-        check_valid(av[1]);
+        if(!check_valid(av[1]))
+            return (1);
         std::string replace = ".replace";
         std::string fileName = av[1];
         std::string concantenated = fileName + replace;
         
-        std::ifstream currFile(fileName);
-        std::ofstream newFile(concantenated);
+        std::ifstream currFile(fileName.c_str());
+        std::ofstream newFile(concantenated.c_str());
 
         if(!currFile || !newFile)
         {

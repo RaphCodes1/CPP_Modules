@@ -28,7 +28,7 @@ void Harl::complain(std::string level)
         &Harl::warning,
         &Harl::error,
     };
-    std::string keywords[4] = {"debug","info","warning","error"};
+    std::string keywords[4] = {"DEBUG","INFO","WARNING","ERROR"};
     for(size_t i = 0;i < 4;i++)
     {   
         if(level == keywords[i])
