@@ -1,7 +1,7 @@
 NAME = zombie
 
 SRC = main.cpp Zombie.cpp randomChump.cpp newZombie.cpp
-GCC = g++ 
+CXX = c++ 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS = $(SRC:.cpp=.o)
@@ -9,10 +9,10 @@ OBJS = $(SRC:.cpp=.o)
 all:$(NAME)
 
 $(NAME):$(OBJS)
-	$(GCC) $(CPPFLAGS) $^ -o $@
+	$(CXX) $(CPPFLAGS) $^ -o $@
 
 %.o:%.cpp
-	$(GCC) $(CPPFLAGS) -c $< -o $@
+	$(CXX) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
