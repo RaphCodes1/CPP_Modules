@@ -4,18 +4,18 @@
 int main()
 {   
     {
-        Weapon frying = Weapon("Frying Pan");
-        HumanA calvin("Calvin",frying);
-        calvin.attack();
-        frying.setType("Baton");
-        calvin.attack();
-    }
-
-    {   
-        Weapon banana = Weapon("Banana");
-        HumanB mike("Mike");
-        mike.attack();
-        mike.setType(banana);
-        mike.attack();
+        Weapon club = Weapon("crude spiked club");
+        HumanA bob("Bob", club);
+        bob.attack();
+        club.setType("some other type of club");
+        bob.attack();
+        }
+        {
+        Weapon club = Weapon("crude spiked club");
+        HumanB jim("Jim");
+        jim.setWeapon(club);
+        jim.attack();
+        club.setType("some other type of club");
+        jim.attack();
     }
 }
