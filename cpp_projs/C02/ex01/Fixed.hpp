@@ -3,7 +3,6 @@
 
 class Fixed{
     private:
-        bool isFloat;
         int number;
         static const int bits = 8;
     public:
@@ -15,8 +14,6 @@ class Fixed{
         Fixed &operator=(const Fixed&copy);
         float toFloat(void)const;
         int toInt(void)const;
-        bool getFloatVal() const;
-        int  getNumVal() const;
     };
     
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
