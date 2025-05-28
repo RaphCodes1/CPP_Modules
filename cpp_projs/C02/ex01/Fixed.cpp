@@ -46,5 +46,14 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
     return out;
 }
 
+void Fixed::setRawBits(int const raw){
+    number = raw;
+}
+
+int Fixed::getRawBits(void)const{
+    std::cout << "getRawBits member function called" << std::endl;
+    return number;
+}
+
 
 
