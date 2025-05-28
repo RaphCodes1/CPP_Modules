@@ -22,8 +22,7 @@ int main()
     Fixed const e( Fixed( 10.05f ) / Fixed( 2 ) );
     std::cout << e << std::endl;
 
-    // std::cout << "Static Min: " << Fixed::min(a,b) << std::endl; 
-    // std::cout << "Static Max: " << Fixed::max(c,a) << std::endl; 
-    // std::cout << "CONST Static Min: " << Fixed::min(a,b) << std::endl; 
-    // std::cout << "CONST Static Max: " << Fixed::max(c,a) << std::endl; 
+    std::cout << "comparison: " << Fixed(b <= a) << std::endl;
+    
+    std::cout << "min max: " << Fixed::max(a,b) << std::endl;
 }
