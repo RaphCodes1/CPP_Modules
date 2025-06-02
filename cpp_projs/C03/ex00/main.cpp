@@ -3,17 +3,14 @@
 int main()
 {
     ClapTrap a("Mike");
-    a.attack("Dummy");
-    a.takeDamage(1);
-    a.printInfo();
-    a.beRepaired(7);
-    a.beRepaired(7);
-    a.beRepaired(7);
-    a.beRepaired(7);
-    a.beRepaired(7);
-    a.beRepaired(7);
-    a.attack("bruh");
-    a.takeDamage(10000000);
-    a.beRepaired(7);
-    a.printInfo();
+    ClapTrap b(a);
+    ClapTrap c;
+    c = a;
+    c.attack("Dummy1");
+    std::cout << "C Energy Points: " << c.getEnergyPoints() << std::endl;
+    std::cout << "C Hit Points: " << c.getHitPoints() << std::endl;
+    c.takeDamage(10);
+    c.beRepaired(7);
+    std::cout << "C Energy Points: " << c.getEnergyPoints() << std::endl;
+    std::cout << "C Hit Points: " << c.getHitPoints() << std::endl;
 }
