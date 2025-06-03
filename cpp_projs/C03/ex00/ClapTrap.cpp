@@ -3,7 +3,7 @@
 ClapTrap::ClapTrap()
     :name("Default"), hitPoints(10), energyPoints(10), attackDamage(0)
 {
-    std::cout << "Default Constructor called" << std::endl;
+    std::cout << "ClapTrap Default Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string nameGiven)
@@ -12,16 +12,19 @@ ClapTrap::ClapTrap(std::string nameGiven)
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Deconstructor called" << std::endl;
+    std::cout << "ClapTrap Deconstructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap &copy)
 {   
     std::cout << "Copy Constructor Called" << std::endl;
-    this->name = copy.name;
-    this->hitPoints = copy.hitPoints;
-    this->energyPoints = copy.energyPoints;
-    this->attackDamage = copy.attackDamage;
+    if(this != &copy)
+    {
+        this->name = copy.name;
+        this->hitPoints = copy.hitPoints;
+        this->energyPoints = copy.energyPoints;
+        this->attackDamage = copy.attackDamage;
+    }
     
 }
 

@@ -1,12 +1,45 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(const std::string nameGiven) : ClapTrap(nameGiven)
+ScavTrap::ScavTrap()
+    :ClapTrap("Default")
+{
+    std::cout << "ScavTrap Default Contructor called" << std::endl;
+    hitPoints = 100;
+    energyPoints = 50;
+    attackDamage = 20;
+}
+
+ScavTrap::ScavTrap(const std::string nameGiven) 
+    :ClapTrap(nameGiven)
 {
     std::cout << "ScavTrap Contructor called" << std::endl;
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
+}
+
+ScavTrap::ScavTrap(ScavTrap &copy)
+{   
+    if(this != &copy)
+    {
+        this->name = copy.name;
+        this->hitPoints = copy.hitPoints;
+        this->energyPoints = copy.energyPoints;
+        this->attackDamage = copy.attackDamage;
+    }
+}
+
+ScavTrap &ScavTrap::operator=(ScavTrap &copy)
+{
+    if(this != &copy)
+    {
+        this->name = copy.name;
+        this->hitPoints = copy.hitPoints;
+        this->energyPoints = copy.energyPoints;
+        this->attackDamage = copy.attackDamage;
+    }
+    return *this;
 }
 
 ScavTrap::~ScavTrap()
