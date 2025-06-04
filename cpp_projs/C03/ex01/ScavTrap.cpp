@@ -19,7 +19,8 @@ ScavTrap::ScavTrap(const std::string nameGiven)
     attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(ScavTrap &copy)
+ScavTrap::ScavTrap(const ScavTrap &copy)
+    :ClapTrap(copy)
 {   
     if(this != &copy)
     {
@@ -30,7 +31,7 @@ ScavTrap::ScavTrap(ScavTrap &copy)
     }
 }
 
-ScavTrap &ScavTrap::operator=(ScavTrap &copy)
+ScavTrap &ScavTrap::operator=(const ScavTrap &copy)
 {
     if(this != &copy)
     {

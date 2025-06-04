@@ -15,7 +15,7 @@ ClapTrap::~ClapTrap()
     std::cout << "ClapTrap Deconstructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &copy)
+ClapTrap::ClapTrap(const ClapTrap &copy)
 {   
     std::cout << "Copy Constructor Called" << std::endl;
     if(this != &copy)
@@ -28,7 +28,7 @@ ClapTrap::ClapTrap(ClapTrap &copy)
     
 }
 
-ClapTrap &ClapTrap::operator=(ClapTrap &copy)
+ClapTrap &ClapTrap::operator=(const ClapTrap &copy)
 {   
     std::cout << "Copy Assignment Operator Called" << std::endl;
     if(this != &copy)
@@ -75,12 +75,12 @@ void ClapTrap::attack(const std::string &target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
     if(this->hitPoints > 0)
-    {
-        this->hitPoints -= amount;
         std::cout << "ClapTrap " <<  name <<" takes " << amount << " damage!" << std::endl;
-    }
+
+    if (amount >= static_cast<unsigned int>(hitPoints))
+        hitPoints = 0;
     else
-        std::cout << "ClapTrap " << name << " has " << this->hitPoints << " hitpoints" << std::endl;
+        hitPoints -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
