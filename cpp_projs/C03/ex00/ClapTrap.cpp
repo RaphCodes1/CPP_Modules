@@ -17,7 +17,7 @@ ClapTrap::~ClapTrap()
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {   
-    std::cout << "Copy Constructor Called" << std::endl;
+    std::cout << "ClapTrap Copy Constructor Called" << std::endl;
     if(this != &copy)
     {
         this->name = copy.name;
@@ -30,7 +30,7 @@ ClapTrap::ClapTrap(const ClapTrap &copy)
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &copy)
 {   
-    std::cout << "Copy Assignment Operator Called" << std::endl;
+    std::cout << "ClapTrap Copy Assignment Operator Called" << std::endl;
     if(this != &copy)
     {
         this->name = copy.name;
