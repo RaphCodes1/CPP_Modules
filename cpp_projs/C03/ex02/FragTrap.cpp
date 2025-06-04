@@ -32,7 +32,8 @@ FragTrap::FragTrap(const FragTrap &copy)
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &copy)
-{
+{   
+    std::cout << "FragTrap Copy Assignment Operator Called" << std::endl;
     if(this != &copy)
     {
         this->name = copy.name;

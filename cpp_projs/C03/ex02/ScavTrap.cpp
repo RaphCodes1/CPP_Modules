@@ -22,6 +22,7 @@ ScavTrap::ScavTrap(const std::string nameGiven)
 ScavTrap::ScavTrap(const ScavTrap &copy)
     :ClapTrap(copy)
 {   
+    std::cout << "ScavTrap Copy Constructor Called" << std::endl;
     if(this != &copy)
     {
         this->name = copy.name;
@@ -32,7 +33,8 @@ ScavTrap::ScavTrap(const ScavTrap &copy)
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &copy)
-{
+{   
+    std::cout << "ScavTrap Copy Assignment Operator Called" << std::endl;
     if(this != &copy)
     {
         this->name = copy.name;
