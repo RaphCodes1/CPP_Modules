@@ -10,10 +10,10 @@ ScavTrap::ScavTrap()
     attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const std::string nameGiven) 
+ScavTrap::ScavTrap(const std::string &nameGiven) 
     :ClapTrap(nameGiven)
 {
-    std::cout << "ScavTrap Contructor called" << std::endl;
+    std::cout << "ScavTrap Constructor called" << std::endl;
     hitPoints = 100;
     energyPoints = 50;
     attackDamage = 20;
@@ -22,25 +22,15 @@ ScavTrap::ScavTrap(const std::string nameGiven)
 ScavTrap::ScavTrap(const ScavTrap &copy)
     :ClapTrap(copy)
 {   
-    std::cout << "ScavTrap Copy Constructor Called" << std::endl;
-    if(this != &copy)
-    {
-        this->name = copy.name;
-        this->hitPoints = copy.hitPoints;
-        this->energyPoints = copy.energyPoints;
-        this->attackDamage = copy.attackDamage;
-    }
+    std::cout << "ScavTrap Copy Constructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &copy)
 {   
-    std::cout << "ScavTrap Copy Assignment Operator Called" << std::endl;
+    std::cout << "ScavTrap Copy assignment Operator called" << std::endl;
     if(this != &copy)
     {
-        this->name = copy.name;
-        this->hitPoints = copy.hitPoints;
-        this->energyPoints = copy.energyPoints;
-        this->attackDamage = copy.attackDamage;
+        ClapTrap::operator=(copy);
     }
     return *this;
 }

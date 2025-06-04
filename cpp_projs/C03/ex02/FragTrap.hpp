@@ -6,11 +6,11 @@
 class FragTrap : public ClapTrap{
     public:
         FragTrap();
-        FragTrap(std::string nameGiven);
+        FragTrap(const std::string &nameGiven);
         ~FragTrap();
         FragTrap(const FragTrap &copy);
         FragTrap&operator=(const FragTrap &copy);
-        void highFivesGuys(void);
+        void highFivesGuys();
 };
 
 

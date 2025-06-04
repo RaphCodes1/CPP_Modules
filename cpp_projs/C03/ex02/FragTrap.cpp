@@ -1,7 +1,5 @@
 #include "FragTrap.hpp"
 
-
-
 FragTrap::FragTrap()
     :ClapTrap("Default")
 {
@@ -11,7 +9,7 @@ FragTrap::FragTrap()
     attackDamage = 20;
 }
 
-FragTrap::FragTrap(const std::string nameGiven) 
+FragTrap::FragTrap(const std::string &nameGiven) 
     :ClapTrap(nameGiven)
 {
     std::cout << "FragTrap Contructor called" << std::endl;
@@ -36,15 +34,12 @@ FragTrap &FragTrap::operator=(const FragTrap &copy)
     std::cout << "FragTrap Copy Assignment Operator Called" << std::endl;
     if(this != &copy)
     {
-        this->name = copy.name;
-        this->hitPoints = copy.hitPoints;
-        this->energyPoints = copy.energyPoints;
-        this->attackDamage = copy.attackDamage;
+        ClapTrap::operator=(copy);
     }
     return *this;
 }
 
-void FragTrap::highFivesGuys(void)
+void FragTrap::highFivesGuys()
 {
     std::cout << name << ": positive high-fives request" << std::endl;
 }

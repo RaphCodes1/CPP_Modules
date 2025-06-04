@@ -4,24 +4,23 @@
 #include <string>
 
 class ClapTrap{
-    private:
+    protected:
         std::string name;
         int hitPoints;
         int energyPoints;
         int attackDamage;
     public:
         ClapTrap();
-        ClapTrap(std::string nameGiven);
+        ClapTrap(const std::string &nameGiven);
         ~ClapTrap();
         ClapTrap(const ClapTrap &copy);
         ClapTrap&operator=(const ClapTrap &copy);
         void attack(const std::string &target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
-        int  getEnergyPoints();
-        int  getHitPoints();
-        void printInfo();
-
+        int  getEnergyPoints() const;
+        int  getHitPoints() const;
+        void printInfo() const;
 };
 
 #endif
