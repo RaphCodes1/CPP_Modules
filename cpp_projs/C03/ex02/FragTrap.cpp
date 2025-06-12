@@ -5,8 +5,8 @@ FragTrap::FragTrap()
 {
     std::cout << "FragTrap Default Contructor called" << std::endl;
     hitPoints = 100;
-    energyPoints = 50;
-    attackDamage = 20;
+    energyPoints = 100;
+    attackDamage = 30;
 }
 
 FragTrap::FragTrap(const std::string &nameGiven) 
@@ -14,8 +14,8 @@ FragTrap::FragTrap(const std::string &nameGiven)
 {
     std::cout << "FragTrap Contructor called" << std::endl;
     hitPoints = 100;
-    energyPoints = 50;
-    attackDamage = 20;
+    energyPoints = 100;
+    attackDamage = 30;
 }
 
 FragTrap::~FragTrap()
