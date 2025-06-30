@@ -13,7 +13,7 @@ Dog::Dog(): Animal(), attribute(new Brain()) {
     std::cout << "Dog Default Constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &src) : Animal(src), attribute(new Brain(*src.getBrain())) {
+Dog::Dog(const Dog &src) : Animal(src), attribute(new Brain(*src.attribute)){
     _type = src._type;
     std::cout << "Dog Copy Constructor called" << std::endl;
 }

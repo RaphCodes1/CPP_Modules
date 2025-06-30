@@ -13,7 +13,10 @@ Cat::Cat(): Animal(), attribute(new Brain()) {
     std::cout << "Cat Default Constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &src) : Animal(src), attribute(new Brain(*src.getBrain())) {
+Cat::Cat(const Cat &src) : Animal(src),  attribute(new Brain(*src.attribute)){
+    // if(attribute)
+    //     delete attribute;
+    // attribute = new Brain(*src.attribute);
     _type = src._type;
     std::cout << "Cat Copy Constructor called" << std::endl;
 }

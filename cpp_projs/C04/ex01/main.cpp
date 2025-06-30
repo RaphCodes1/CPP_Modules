@@ -35,8 +35,8 @@ int main()
 base.getBrain()->setIdea(0, "I want to eat");
 std::cout << "base idea " << base.getBrain()->getIdea(0) << std::endl;
 {
-    Dog clone = base;
-    // clone = base;
+    Dog clone;
+    clone = base;
     std::cout << "clone idea: " << clone.getBrain()->getIdea(0) << std::endl;
     clone.getBrain()->setIdea(0, "I want to play");
     std::cout << "base idea: " << base.getBrain()->getIdea(0) << std::endl;
