@@ -19,7 +19,16 @@ int main()
         std::cout << arrayAnimal[i]->getType() << "\n";
     }
 
-    delete arrayAnimal;
+    i = -1;
+    while(++i < 10)
+    {
+        arrayAnimal[i]->makeSound();
+    }
 
+    i = -1;
+    while(++i < 10)
+    {
+        delete arrayAnimal[i];
+    }   
     return (0);
 }

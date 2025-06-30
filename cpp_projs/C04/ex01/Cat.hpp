@@ -9,9 +9,11 @@ class Cat : public Animal, public Brain{
         Brain *attribute;
     public:
         Cat();
+        Cat(const Cat &src);
+        Cat &operator=(const Cat &copy);
         void makeSound() const;
         std::string getType() const;
-        ~Cat();
+        virtual ~Cat();
 };
 
 #endif
