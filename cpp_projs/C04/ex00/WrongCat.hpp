@@ -7,7 +7,7 @@ class WrongCat : public WrongAnimal {
         WrongCat();
         WrongCat(const WrongCat &src);
         WrongCat &operator=(const WrongCat &copy);
-        virtual void makeSound() const;
+        void makeSound() const;
         std::string getType() const;
         virtual ~WrongCat();
 };
