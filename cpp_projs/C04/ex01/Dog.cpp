@@ -8,12 +8,12 @@ std::string Dog::getType() const{
     return _type;
 }
 
-Dog::Dog(): Animal(), Brain() {
+Dog::Dog(): Animal(), attribute(new Brain()) {
     _type = "Dog";
     std::cout << "Dog Default Constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &src) : Animal(src), Brain(src) {
+Dog::Dog(const Dog &src) : Animal(src), attribute(new Brain(*src.getBrain())) {
     _type = src._type;
     std::cout << "Dog Copy Constructor called" << std::endl;
 }
@@ -30,4 +30,9 @@ Dog &Dog::operator=(const Dog &copy) {
 
 Dog::~Dog(){
     std::cout << "Dog Destructor called" << std::endl;
+    delete attribute; // Clean up dynamically allocated Brain
+}
+
+Brain* Dog::getBrain() const{
+    return attribute; // Return the Brain pointer
 }

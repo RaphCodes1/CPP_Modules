@@ -14,6 +14,7 @@ class Dog : public Animal, public Brain{
         void makeSound() const;
         std::string getType() const;
         virtual ~Dog();
+        Brain* getBrain() const; // to access Brain
 };
 
 #endif
