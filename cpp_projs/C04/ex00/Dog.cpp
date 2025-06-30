@@ -5,13 +5,27 @@ void Dog::makeSound() const{
 }
 
 std::string Dog::getType() const{
-    return type;
+    return _type;
 }
 
-Dog::Dog(){
-    type = "Dog";
+Dog::Dog():Animal() {
+    _type = "Dog";
+    std::cout << "Dog Constructor called" << std::endl;
+}
+
+Dog::Dog(const Dog &src):Animal(src) {
+    _type = src._type;
+    std::cout << "Dog Copy Constructor called" << std::endl;
+}
+
+Dog &Dog::operator=(const Dog &copy) {
+    std::cout << "Dog Assignment Operator called" << std::endl;
+    if (this != &copy) {
+        _type = copy._type;
+    }
+    return *this;
 }
 
 Dog::~Dog(){
-    std::cout << "Dog Deconstructor called" << std::endl;
+    std::cout << "Dog Destructor called" << std::endl;
 }

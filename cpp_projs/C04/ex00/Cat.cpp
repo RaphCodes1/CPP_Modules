@@ -5,13 +5,27 @@ void Cat::makeSound() const{
 }
 
 std::string Cat::getType() const{
-    return type;
+    return _type;
 }
 
-Cat::Cat(){
-    type = "Cat";
+Cat::Cat():Animal() {
+    _type = "Cat";
+    std::cout << "Cat Constructor called" << std::endl;
+}
+
+Cat::Cat(const Cat &src):Animal(src) {
+    _type = src._type;
+    std::cout << "Cat Copy Constructor called" << std::endl;
+}
+
+Cat &Cat::operator=(const Cat &copy) {
+    std::cout << "Cat Assignment Operator called" << std::endl;
+    if (this != &copy) {
+        _type = copy._type;
+    }
+    return *this;
 }
 
 Cat::~Cat(){
-    std::cout << "Cat Deconstructor called" << std::endl;
+    std::cout << "Cat Destructor called" << std::endl;
 }
