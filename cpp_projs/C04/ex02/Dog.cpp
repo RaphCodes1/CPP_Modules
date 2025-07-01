@@ -5,14 +5,34 @@ void Dog::makeSound() const{
 }
 
 std::string Dog::getType() const{
-    return type;
+    return _type;
 }
 
-Dog::Dog(){
-    attribute = new Brain();
-    type = "Dog";
+Dog::Dog(): Animal(), attribute(new Brain()) {
+    _type = "Dog";
+    std::cout << "Dog Default Constructor called" << std::endl;
+}
+
+Dog::Dog(const Dog &src) : Animal(src), attribute(new Brain(*src.attribute)){
+    _type = src._type;
+    std::cout << "Dog Copy Constructor called" << std::endl;
+}
+
+Dog &Dog::operator=(const Dog &copy) {
+    std::cout << "Dog Assignment Operator called" << std::endl;
+    if (this != &copy) {
+        _type = copy._type;
+        // Assuming Brain has an assignment operator
+        *attribute = *(copy.attribute);
+    }
+    return *this;
 }
 
 Dog::~Dog(){
-    std::cout << "Dog Deconstructor called" << std::endl;
+    std::cout << "Dog Destructor called" << std::endl;
+    delete attribute; // Clean up dynamically allocated Brain
+}
+
+Brain* Dog::getBrain() const{
+    return attribute; // Return the Brain pointer
 }

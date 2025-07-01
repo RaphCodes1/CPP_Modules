@@ -4,14 +4,17 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class Dog : public Animal, public Brain{
+class Dog : public Animal{
     private:
         Brain *attribute;
     public:
         Dog();
+        Dog(const Dog &src);
+        Dog &operator=(const Dog &copy);
         void makeSound() const;
         std::string getType() const;
-        ~Dog();
+        virtual ~Dog();
+        Brain* getBrain() const; // to access Brain
 };
 
 #endif

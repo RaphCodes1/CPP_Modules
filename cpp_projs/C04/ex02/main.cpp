@@ -1,16 +1,49 @@
-// #include "Animal.hpp"
+#include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
 int main()
 {
-    Dog myDog;
-    Cat myCat;
+    const Animal* arrayAnimal[10];
+    int i = -1;
+    while(++i < 10)
+    {
+        if(i < 5)
+            arrayAnimal[i] = new Dog();
+        else if(i >= 5)
+            arrayAnimal[i] = new Cat();
+    }
+    i = -1;
+    while(++i < 10)
+    {
+        std::cout << arrayAnimal[i]->getType() << "\n";
+    }
 
-    std::cout << myDog.getType() << " " << std::endl;
-    std::cout << myCat.getType() << " " << std::endl;
-    myDog.makeSound();
-    myCat.makeSound();
+    i = -1;
+    while(++i < 10)
+    {
+        arrayAnimal[i]->makeSound();
+    }
 
-    return (0);
+    i = -1;
+    while(++i < 10)
+    {
+        delete arrayAnimal[i];
+    }   
+    
+    Dog base;
+    base.getBrain()->setIdea(0, "I want to eat");
+    std::cout << "base idea " << base.getBrain()->getIdea(0) << std::endl;
+    {
+        Dog clone;
+        clone = base;
+        std::cout << "clone idea: " << clone.getBrain()->getIdea(0) << std::endl;
+        clone.getBrain()->setIdea(0, "I want to play");
+        std::cout << "base idea: " << base.getBrain()->getIdea(0) << std::endl;
+        std::cout << "clone idea: " << clone.getBrain()->getIdea(0) << std::endl;
+        std::cout << "clone's Brain address: " << clone.getBrain() << std::endl;
+        std::cout << "base's Brain address: " << base.getBrain() << std::endl;
+    }
+    std::cout << "base idea " << base.getBrain()->getIdea(0) << std::endl;
+        return (0);
 }
