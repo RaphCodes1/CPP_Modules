@@ -13,10 +13,7 @@ Cat::Cat(): Animal(), attribute(new Brain()) {
     std::cout << "Cat Default Constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &src) : Animal(src),  attribute(new Brain(*src.attribute)){
-    // if(attribute)
-    //     delete attribute;
-    // attribute = new Brain(*src.attribute);
+Cat::Cat(const Cat &src) : Animal(src), attribute(new Brain(*src.attribute)){
     _type = src._type;
     std::cout << "Cat Copy Constructor called" << std::endl;
 }
@@ -27,10 +24,8 @@ Cat &Cat::operator=(const Cat &copy) {
         if (attribute) {
             delete attribute; // Clean up existing attribute
         }
-        attribute = new Brain(*(copy.attribute)); // Assuming attribute is dynamically allocated
+        attribute = new Brain(*(copy.attribute));
         _type = copy._type;
-        // Assuming Brain has an assignment operator
-        // *attribute = *(copy.attribute);
     }
     return *this;
 }

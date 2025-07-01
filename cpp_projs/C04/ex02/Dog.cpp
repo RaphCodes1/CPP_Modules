@@ -21,9 +21,11 @@ Dog::Dog(const Dog &src) : Animal(src), attribute(new Brain(*src.attribute)){
 Dog &Dog::operator=(const Dog &copy) {
     std::cout << "Dog Assignment Operator called" << std::endl;
     if (this != &copy) {
+        if (attribute) {
+            delete attribute; // Clean up existing attribute
+        }
+        attribute = new Brain(*(copy.attribute));
         _type = copy._type;
-        // Assuming Brain has an assignment operator
-        *attribute = *(copy.attribute);
     }
     return *this;
 }
