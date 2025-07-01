@@ -4,32 +4,21 @@
 
 int main()
 {
-    const Animal* arrayAnimal[10];
-    int i = -1;
-    while(++i < 10)
-    {
-        if(i < 5)
-            arrayAnimal[i] = new Dog();
-        else if(i >= 5)
-            arrayAnimal[i] = new Cat();
-    }
-    i = -1;
-    while(++i < 10)
-    {
-        std::cout << arrayAnimal[i]->getType() << "\n";
-    }
+    const Animal* arrayAnimal[2];
+    arrayAnimal[0] = new Dog();
+    arrayAnimal[1] = new Cat();
 
-    i = -1;
-    while(++i < 10)
-    {
-        arrayAnimal[i]->makeSound();
-    }
+    arrayAnimal[0]->makeSound();
+    arrayAnimal[0]->getType();
 
-    i = -1;
-    while(++i < 10)
-    {
-        delete arrayAnimal[i];
-    }   
+    arrayAnimal[1]->makeSound();
+    arrayAnimal[1]->getType();
+
+    delete arrayAnimal[0];
+    delete arrayAnimal[1];
+
+    // Animal a;
+    // std::cout << "AAAAAAAAA: " << a.getType() << std::endl;
     
     Dog base;
     base.getBrain()->setIdea(0, "I want to eat");

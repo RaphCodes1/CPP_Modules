@@ -25,6 +25,9 @@ int main()
     wrongMeta->makeSound();
     wrongCat->makeSound();
 
+    Animal a;
+    std::cout << "AAAAAAAAA: " << a.getType() << std::endl;
+
     delete wrongCat;
     delete wrongMeta;
     delete j;
