@@ -11,7 +11,7 @@ class Dog : public Animal{
         Dog();
         Dog(const Dog &src);
         Dog &operator=(const Dog &copy);
-        void makeSound() const;
+        virtual void makeSound() const;
         std::string getType() const;
         virtual ~Dog();
         Brain* getBrain() const; // to access Brain

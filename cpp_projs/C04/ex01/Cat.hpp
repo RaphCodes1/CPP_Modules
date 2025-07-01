@@ -11,7 +11,7 @@ class Cat : public Animal{
         Cat();
         Cat(const Cat &src);
         Cat &operator=(const Cat &copy);
-        void makeSound() const;
+        virtual void makeSound() const;
         std::string getType() const;
         virtual ~Cat();
         Brain* getBrain() const;// to access Brain
