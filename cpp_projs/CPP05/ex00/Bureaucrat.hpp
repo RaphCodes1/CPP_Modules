@@ -12,6 +12,7 @@ class Bureaucrat
         int _grade;
     public:
         Bureaucrat();
+        Bureaucrat(const std::string name, const int grade);
         Bureaucrat(const Bureaucrat &src); //copy constructor
         Bureaucrat &operator=(const Bureaucrat &copy); //copy assignment operator
         ~Bureaucrat();

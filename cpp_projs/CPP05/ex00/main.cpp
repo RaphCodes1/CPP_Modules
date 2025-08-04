@@ -2,5 +2,10 @@
 
 int main()
 {
-    std::cout << "Hello there" << std::endl;
+    try{
+        throw std::exception();
+    } catch (const std::exception &e) {
+        std::cerr << "caught an exception: " << e.what() << std::endl;
+    }
+
 }

@@ -1,7 +1,15 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default"){
+Bureaucrat::Bureaucrat() : _name("default"), _grade(0){
     std::cout << "Bureaucrat Default Constructor called" << std::endl;
+}
+
+Bureaucrat::Bureaucrat(const std::string name, const int grade): _name(name){
+    if(grade < 1)
+        throw GradeTooLowException();
+    else if(grade > 150)
+        throw GradeTooHighException();
+    this->_grade = grade;
 }
 
 Bureaucrat::~Bureaucrat(){
