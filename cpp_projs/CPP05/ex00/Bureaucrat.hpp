@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include <exception>
 
 class Bureaucrat
 {
-    protected:
+    private:
         std::string _name;
         int _grade;
     public:
@@ -16,6 +17,20 @@ class Bureaucrat
         ~Bureaucrat();
         std::string getName() const;
         int getGrade() const;
+
+        //exception
+        class GradeTooHighException : public std::exception{
+            public:
+                virtual const char* what() const throw(){
+                    return "Grade too high!";
+                }
+        };
+        class GradeTooLowException : public std::exception{
+            public:
+                virtual const char* what() const throw(){
+                    return "Grade too low!";
+                }
+        };
 };
 
 #endif
