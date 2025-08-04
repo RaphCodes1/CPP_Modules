@@ -19,4 +19,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy){
     }
     return *this;
 }
+
+std::string Bureaucrat::getName() const{
+    return _name;
+}
+
+int Bureaucrat::getGrade() const{
+    return _grade;
+}
  
