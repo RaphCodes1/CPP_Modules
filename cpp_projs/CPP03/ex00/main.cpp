@@ -8,7 +8,7 @@ int main()
     c = a;
     c.attack("Dummy1");
     c.printInfo();
-    c.takeDamage(1000000);
+    c.takeDamage(1000);
     c.beRepaired(7);
     c.printInfo();
 }
