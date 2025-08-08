@@ -18,19 +18,17 @@ class Bureaucrat
         ~Bureaucrat();
         std::string getName() const;
         int getGrade() const;
+        void reduceGrade(unsigned int num);
+        void increaseGrade(unsigned int num);
 
         //exception
         class GradeTooHighException : public std::exception{
             public:
-                virtual const char* what() const throw(){
-                    return "Grade too high!";
-                }
+                const char* what() const throw();
         };
         class GradeTooLowException : public std::exception{
             public:
-                virtual const char* what() const throw(){
-                    return "Grade too low!";
-                }
+                const char* what() const throw();
         };
 };
 

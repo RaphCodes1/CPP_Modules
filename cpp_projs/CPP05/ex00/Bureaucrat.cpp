@@ -35,4 +35,32 @@ std::string Bureaucrat::getName() const{
 int Bureaucrat::getGrade() const{
     return _grade;
 }
+
+void Bureaucrat::increaseGrade(unsigned int num){
+    int newAmount = _grade + num;
+    if(newAmount < 1)
+        throw GradeTooLowException();
+    else if(newAmount > 150)
+        throw GradeTooHighException();
+    this->_grade = newAmount;
+}
+
+void Bureaucrat::reduceGrade(unsigned int num){
+    int newAmount = _grade - num;
+    if(newAmount < 1)
+        throw GradeTooLowException();
+    else if(newAmount > 150)
+        throw GradeTooHighException();
+    this->_grade = newAmount;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw(){
+    return "Grade too high!";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw(){
+    return "Grades too low!";
+}
+
+
  
