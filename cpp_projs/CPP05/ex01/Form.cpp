@@ -1,5 +1,64 @@
 #include "Form.hpp"
 
-Form::Form():_name("Default"),checkSigned(false),_gradeToSign(10),_gradeToExcecute(10){
-    std::cout << "Default Constructor called" << std::endl;
+Form::Form():_name("Default"),checkSigned(false),_gradeToSign(150),_gradeToExcecute(150){
+    std::cout << "Default Form Constructor called" << std::endl;
 }
+
+Form::Form(std::string name, const int gradeToSign, const int gradeToExecute) 
+: _name(name), checkSigned(false),_gradeToSign(gradeToSign),_gradeToExcecute(gradeToExecute)
+{
+    std::cout << "Form Constructor called" << std::endl;
+}
+
+Form::~Form(){
+    std::cout << "Form Destructor called";
+}
+
+Form::Form(const Form& src)
+: _name(src._name), checkSigned(src.checkSigned), _gradeToExcecute(src._gradeToExcecute), _gradeToSign(src._gradeToSign){
+    
+    std::cout << "Form Copy Constructor called" << std::endl;
+}
+
+Form &Form::operator=(const Form& src)
+{
+    if(this != &src)
+    {
+        this->_name = src._name;
+        this->checkSigned = src.checkSigned;
+    }
+
+    return(*this);
+}
+
+std::string Form::getName() const
+{
+    return(_name);
+}
+
+bool Form::getSigned() const
+{
+    return(checkSigned);
+}
+
+int Form::getGradeExecute() const
+{
+    return (_gradeToExcecute);
+}
+
+int Form::getGradeSigned() const
+{
+    return (_gradeToSign);
+}
+
+
+std::ostream &operator<<(std::ostream &out, Form const &other)
+{
+    out << "Name: " << other.getName() << "\nIsSigned: " << other.getSigned() << "\nGrade to execute: "
+    << other.getGradeExecute() << "\nGrade to get signed: " << other.getGradeSigned() << std::endl;
+}
+
+// void Form::beSigned()
+// {
+    //work in progress....
+// }

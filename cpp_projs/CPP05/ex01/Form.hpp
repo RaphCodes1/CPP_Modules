@@ -14,11 +14,15 @@ class Form{
         const int _gradeToExcecute;
     public:
         Form();
-        Form(std::string name, int gradeToSign, int gradeToExecute);
+        Form(std::string name, const int gradeToSign, const int gradeToExecute);
+        ~Form();
         Form(const Form &src);
         Form &operator=(const Form &src);
-        ~Form();
         void beSigned(Bureaucrat &src);
+        std::string getName() const;
+        bool getSigned() const;
+        int getGradeSigned() const;
+        int getGradeExecute() const;
 
     //exceptions
     class GradeTooHighException : public std::exception{
