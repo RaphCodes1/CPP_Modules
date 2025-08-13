@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat
 {
@@ -20,6 +23,7 @@ class Bureaucrat
         int getGrade() const;
         void reduceGrade(unsigned int num);
         void increaseGrade(unsigned int num);
+        void signForm(Form &src);
 
         //exception
         class GradeTooHighException : public std::exception{

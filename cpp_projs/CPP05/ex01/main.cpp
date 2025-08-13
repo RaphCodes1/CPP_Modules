@@ -19,8 +19,9 @@ int main()
     } catch(const Bureaucrat::GradeTooLowException& e){
         std::cerr << "caught exception: " << e.what() << std::endl;
     }
-
     std::cout << b; 
-
-
+    
+    Form c("bruh",30,30);
+    b.signForm(c);
+    std::cout << c.getGradeSigned() << std::endl;
 }
