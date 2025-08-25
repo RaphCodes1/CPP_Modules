@@ -1,34 +1,17 @@
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
+#include "Intern.hpp"
+#include "AForm.hpp"
 int main()
 {  
+    Intern formMaker;
     try{
-        ShrubberyCreationForm bruh("target banana");
-        Bureaucrat a("Kyle",144);
-        a.signForm(bruh);
-        a.executeForm(bruh);
-    } catch(std::exception& e){
-        std::cerr << "caught an exception: " << e.what() << std::endl;
+        AForm *myForm = formMaker.makeForm("robotomy request","banana");
+        std::cout << "Name of Form: " << myForm->getName() << std::endl;
+        Bureaucrat c("David",10);
+        c.signForm(*myForm);
+        c.executeForm(*myForm);
+        delete myForm;
+    } catch(std::exception &e){
+        std::cerr << "Exception error: " << e.what() << std::endl;
     }
-
-    try{
-        PresidentialPardonForm obama("target orange");
-        Bureaucrat b("David",23);
-        b.signForm(obama);
-        b.executeForm(obama);
-    } catch(std::exception& e){
-        std::cerr << "caught an exception: " << e.what() << std::endl;
-    }
-
-    try{
-        RobotomyRequestForm cheese("target apple");
-        Bureaucrat c("David",69);
-        c.signForm(cheese);
-        c.executeForm(cheese);
-    } catch(std::exception& e){
-        std::cerr << "caught an exception: " << e.what() << std::endl;
-    }
-    
 }
