@@ -10,7 +10,7 @@ Form::Form(std::string name, const int gradeToSign, const int gradeToExecute)
     std::cout << "Form Constructor called" << std::endl;
     if(_gradeToSign < 1 || _gradeToExcecute < 1)
         throw GradeTooHighException();
-    else if(_gradeToExcecute > 150 || _gradeToExcecute > 150)
+    else if(_gradeToSign > 150 || _gradeToExcecute > 150)
         throw GradeTooLowException();
 }
 
@@ -74,7 +74,7 @@ const char* Form::GradeTooLowException::what() const throw(){
 
 void Form::beSigned(const Bureaucrat &src)
 {
-    if(src.getGrade() >= _gradeToSign)
+    if(src.getGrade() > _gradeToSign)
         throw GradeTooLowException();
     checkSigned = true;
 }
