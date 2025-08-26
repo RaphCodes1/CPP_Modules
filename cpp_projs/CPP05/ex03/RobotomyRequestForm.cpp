@@ -34,14 +34,23 @@ const char *RobotomyRequestForm::RobotomyFailureException::what() const throw(){
     return "Robotomy Failed.";
 }
 
+const char *RobotomyRequestForm::RobotomyFiftyFifty::what() const throw(){
+    return "Robotomy did not win 50/50";
+}
+
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {   
-    std::cout << "Drilling Noises brrrrrr" << std::endl;
-    try{
-        AForm::execute(executor);
-        std::cout << _target << " has been robotomized successfully 50" << "%" << " most of the time" << std::endl;
-    } catch(std::exception& e)
+    int randomNum = rand() % 2;
+    if(randomNum == 1)
     {
-        throw RobotomyFailureException();
+        try{
+            AForm::execute(executor);
+            std::cout << "Drilling Noises brrrrrr " << _target << " has been robotomized successfully" << std::endl;
+        } catch(std::exception& e)
+        {
+            throw RobotomyFailureException();
+        }
+    } else {
+        throw RobotomyFiftyFifty();
     }
 }
