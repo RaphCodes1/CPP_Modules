@@ -1,9 +1,13 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include <ctime>
+
 int main()
-{  
+{   
+    srand(time(0));  
     try{
         ShrubberyCreationForm bruh("target banana");
         Bureaucrat a("Kyle",144);
@@ -24,7 +28,34 @@ int main()
 
     try{
         RobotomyRequestForm cheese("target apple");
-        Bureaucrat c("David",69);
+        Bureaucrat c("David",21);
+        c.signForm(cheese);
+        c.executeForm(cheese);
+    } catch(std::exception& e){
+        std::cerr << "caught an exception: " << e.what() << std::endl;
+    }
+
+    try{
+        RobotomyRequestForm cheese("target jackfruit");
+        Bureaucrat c("William",10);
+        c.signForm(cheese);
+        c.executeForm(cheese);
+    } catch(std::exception& e){
+        std::cerr << "caught an exception: " << e.what() << std::endl;
+    }
+
+    try{
+        RobotomyRequestForm cheese("target watermelon");
+        Bureaucrat c("Max",10);
+        c.signForm(cheese);
+        c.executeForm(cheese);
+    } catch(std::exception& e){
+        std::cerr << "caught an exception: " << e.what() << std::endl;
+    }
+
+    try{
+        RobotomyRequestForm cheese("target durian");
+        Bureaucrat c("Francis",10);
         c.signForm(cheese);
         c.executeForm(cheese);
     } catch(std::exception& e){

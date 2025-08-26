@@ -19,6 +19,11 @@ class RobotomyRequestForm: public AForm{
             public:
                 const char* what() const throw();
         };
+
+        class RobotomyFiftyFifty: public std::exception{
+            public:
+                const char* what() const throw();
+        };
 };
 
 #endif
