@@ -3,7 +3,7 @@
 int main()
 {
     try{
-        Bureaucrat a("Mike",0);
+        Bureaucrat a("Mike",1);
     } catch (const Bureaucrat::GradeTooHighException& e) {
         std::cerr << "caught an exception: " << e.what() << std::endl;
     } catch (const Bureaucrat::GradeTooLowException& e) {
@@ -13,14 +13,11 @@ int main()
     Bureaucrat b("Kyle",10);
 
     try{
-        b.increaseGrade(-11);
+        b.increaseGrade(9);
+        std::cout << b << std::endl;
     } catch(const Bureaucrat::GradeTooHighException& e){
         std::cerr << "caught exception: " << e.what() << std::endl;
     } catch(const Bureaucrat::GradeTooLowException& e){
         std::cerr << "caught exception: " << e.what() << std::endl;
     }
-
-    std::cout << b; 
-
-
 }

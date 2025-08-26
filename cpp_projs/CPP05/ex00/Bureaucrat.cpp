@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("default"), _grade(0){
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150){
     std::cout << "Bureaucrat Default Constructor called" << std::endl;
 }
 
@@ -17,7 +17,7 @@ Bureaucrat::~Bureaucrat(){
     std::cout << "Bureaucrat Deconstructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src): _name(src._name){
+Bureaucrat::Bureaucrat(const Bureaucrat &src): _name(src._name), _grade(src._grade){
     std::cout << "Bureacrat Copy Constructor called" << std::endl;
 }
 
@@ -25,6 +25,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy){
     std::cout << "Bureaucrat Assignment Operator called" << std::endl;
     if(this != &copy){
         _name = copy._name;
+        _grade = copy._grade;
     }
     return *this;
 }
@@ -38,7 +39,7 @@ int Bureaucrat::getGrade() const{
 }
 
 void Bureaucrat::increaseGrade(unsigned int num){
-    int newAmount = _grade + num;
+    int newAmount = _grade - num;
     if(newAmount < 1)
         throw GradeTooHighException();
     else if(newAmount > 150)
@@ -47,7 +48,7 @@ void Bureaucrat::increaseGrade(unsigned int num){
 }
 
 void Bureaucrat::reduceGrade(unsigned int num){
-    int newAmount = _grade - num;
+    int newAmount = _grade + num;
     if(newAmount < 1)
         throw GradeTooHighException();
     else if(newAmount > 150)
