@@ -37,7 +37,7 @@ int main()
 
     try{
         RobotomyRequestForm cheese("target jackfruit");
-        Bureaucrat c("William",10);
+        Bureaucrat c("William",150);
         c.signForm(cheese);
         c.executeForm(cheese);
     } catch(std::exception& e){
@@ -47,15 +47,6 @@ int main()
     try{
         RobotomyRequestForm cheese("target watermelon");
         Bureaucrat c("Max",10);
-        c.signForm(cheese);
-        c.executeForm(cheese);
-    } catch(std::exception& e){
-        std::cerr << "caught an exception: " << e.what() << std::endl;
-    }
-
-    try{
-        RobotomyRequestForm cheese("target durian");
-        Bureaucrat c("Francis",10);
         c.signForm(cheese);
         c.executeForm(cheese);
     } catch(std::exception& e){
