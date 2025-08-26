@@ -54,5 +54,5 @@ AForm *Intern::makeForm(std::string name, std::string target){
     }
     // std::cerr << "Error: Form Type '" << name << "' does not exist" << std::endl;
     throw FormError();
-    return nullptr;
+    return NULL;
 }

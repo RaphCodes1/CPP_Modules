@@ -7,7 +7,9 @@
 
 int main()
 {   
-    srand(time(0));  
+    srand(time(0)); 
+    
+    std::cout << "TIMEEEEEEEEE: " << time(0) << std::endl;
     try{
         ShrubberyCreationForm bruh("target banana");
         Bureaucrat a("Kyle",144);
