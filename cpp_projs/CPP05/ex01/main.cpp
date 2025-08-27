@@ -2,16 +2,8 @@
 
 int main()
 {
-    try{
-        Bureaucrat a("Mike",0);
-    } catch (const Bureaucrat::GradeTooHighException& e) {
-        std::cerr << "caught an exception: " << e.what() << std::endl;
-    } catch (const Bureaucrat::GradeTooLowException& e) {
-        std::cerr << "caught an exception: " << e.what() << std::endl;
-    }
-
+    
     Bureaucrat b("Kyle",10);
-
     try{
         b.increaseGrade(-11);
     } catch(const Bureaucrat::GradeTooHighException& e){
@@ -21,7 +13,9 @@ int main()
     }
     std::cout << b; 
     
-    Form c("bruh",30,30);
-    b.signForm(c);
-    std::cout << c.getGradeSigned() << std::endl;
+    Form form1("Jack",30,30);
+    b.signForm(form1);
+    Form copyForm1 = form1;
+    std::cout << form1.getGradeSigned() << std::endl;
+    std::cout << copyForm1 << std::endl;
 }

@@ -4,7 +4,7 @@ Form::Form():_name("Default"),checkSigned(false),_gradeToSign(150),_gradeToExcec
     std::cout << "Default Form Constructor called" << std::endl;
 }
 
-Form::Form(std::string name, const int gradeToSign, const int gradeToExecute) 
+Form::Form(const std::string name, const int gradeToSign, const int gradeToExecute) 
 : _name(name), checkSigned(false),_gradeToSign(gradeToSign),_gradeToExcecute(gradeToExecute)
 {   
     std::cout << "Form Constructor called" << std::endl;
@@ -22,15 +22,13 @@ Form::Form(const Form& src)
 : _name(src._name), checkSigned(src.checkSigned), _gradeToSign(src._gradeToSign), _gradeToExcecute(src._gradeToExcecute){
     
     std::cout << "Form Copy Constructor called" << std::endl;
+    *this = src;
 }
 
 Form &Form::operator=(const Form& src)
 {
     if(this != &src)
-    {
-        this->_name = src._name;
-        this->checkSigned = src.checkSigned;
-    }
+        return(*this);
 
     return(*this);
 }
