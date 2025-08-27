@@ -45,14 +45,4 @@ int main()
     } catch(std::exception& e){
         std::cerr << "caught an exception: " << e.what() << std::endl;
     }
-
-    try{
-        RobotomyRequestForm cheese("target watermelon");
-        Bureaucrat c("Max",10);
-        c.signForm(cheese);
-        c.executeForm(cheese);
-    } catch(std::exception& e){
-        std::cerr << "caught an exception: " << e.what() << std::endl;
-    }
-    
 }
