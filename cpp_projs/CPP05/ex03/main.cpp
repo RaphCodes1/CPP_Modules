@@ -9,10 +9,10 @@ int main()
     try{
         AForm *myForm = formMaker.makeForm("robotomy request","banana");
         std::cout << "Name of Form: " << myForm->getName() << std::endl;
-        std::cout << *myForm << std::endl;
         Bureaucrat c("David",10);
         c.signForm(*myForm);
         c.executeForm(*myForm);
+        std::cout << *myForm << std::endl;
         delete myForm;
     } catch(std::exception &e){
         std::cerr << "Exception error: " << e.what() << std::endl;
@@ -21,10 +21,10 @@ int main()
     try{
         AForm *myForm = formMaker.makeForm("robotomy request","cheese");
         std::cout << "Name of Form: " << myForm->getName() << std::endl;
-        std::cout << *myForm << std::endl;
         Bureaucrat c("Francis",10);
         c.signForm(*myForm);
         c.executeForm(*myForm);
+        std::cout << *myForm << std::endl;
         delete myForm;
     } catch(std::exception &e){
         std::cerr << "Exception error: " << e.what() << std::endl;

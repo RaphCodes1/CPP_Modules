@@ -63,7 +63,6 @@ void Bureaucrat::signForm(Form &src){
     }catch(const std::exception& e){
         std::cerr << "Couldnt sign form because: " << e.what() << std::endl; 
     }
-
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw(){

@@ -15,6 +15,7 @@ int main()
         Bureaucrat a("Kyle",144);
         a.signForm(bruh);
         a.executeForm(bruh);
+        std::cout << bruh << std::endl;
     } catch(std::exception& e){
         std::cerr << "caught an exception: " << e.what() << std::endl;
     }
@@ -24,6 +25,7 @@ int main()
         Bureaucrat b("David",23);
         b.signForm(obama);
         b.executeForm(obama);
+        std::cout << obama << std::endl;
     } catch(std::exception& e){
         std::cerr << "caught an exception: " << e.what() << std::endl;
     }
@@ -33,6 +35,7 @@ int main()
         Bureaucrat c("David",21);
         c.signForm(cheese);
         c.executeForm(cheese);
+        std::cout << cheese << std::endl;
     } catch(std::exception& e){
         std::cerr << "caught an exception: " << e.what() << std::endl;
     }
@@ -42,6 +45,7 @@ int main()
         Bureaucrat c("William",150);
         c.signForm(cheese);
         c.executeForm(cheese);
+        std::cout << cheese << std::endl;
     } catch(std::exception& e){
         std::cerr << "caught an exception: " << e.what() << std::endl;
     }
