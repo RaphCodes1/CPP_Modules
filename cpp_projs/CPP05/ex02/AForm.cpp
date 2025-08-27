@@ -4,7 +4,7 @@ AForm::AForm():_name("Default"),checkSigned(false),_gradeToSign(150),_gradeToExc
     // std::cout << "Default AForm Constructor called" << std::endl;
 }
 
-AForm::AForm(std::string name, const int gradeToSign, const int gradeToExecute) 
+AForm::AForm(const std::string name, const int gradeToSign, const int gradeToExecute) 
 : _name(name),checkSigned(false),_gradeToSign(gradeToSign),_gradeToExcecute(gradeToExecute)
 {   
     // std::cout << "AForm Constructor called" << std::endl;
@@ -27,11 +27,8 @@ AForm::AForm(const AForm& src)
 AForm &AForm::operator=(const AForm& src)
 {
     if(this != &src)
-    {
-        this->_name = src._name;
-        this->checkSigned = src.checkSigned;
-    }
-
+        return(*this);
+        
     return(*this);
 }
 

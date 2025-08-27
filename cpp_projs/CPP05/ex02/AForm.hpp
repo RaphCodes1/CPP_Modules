@@ -11,13 +11,13 @@ class Bureaucrat;
 
 class AForm{
     private:
-        std::string _name;
+        const std::string _name;
         bool checkSigned;
         const int _gradeToSign;
         const int _gradeToExcecute;
     public:
         AForm();
-        AForm(std::string name, const int gradeToSign, const int gradeToExecute);
+        AForm(const std::string name, const int gradeToSign, const int gradeToExecute);
         virtual ~AForm();
         AForm(const AForm &src);
         AForm &operator=(const AForm &src);
