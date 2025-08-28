@@ -12,8 +12,8 @@ int main()
 
     Bureaucrat c(b);
     try{
-        b.increaseGrade(9);
-        c.reduceGrade(3);
+        b.increaseGrade();
+        c.reduceGrade();
         std::cout << b << std::endl;
         std::cout << c << std::endl;
     } catch(const std::exception& e){

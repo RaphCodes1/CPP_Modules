@@ -38,22 +38,16 @@ int Bureaucrat::getGrade() const{
     return _grade;
 }
 
-void Bureaucrat::increaseGrade(unsigned int num){
-    int newAmount = _grade - num;
-    if(newAmount < 1)
+void Bureaucrat::increaseGrade(){
+    if(_grade < 1)
         throw GradeTooHighException();
-    else if(newAmount > 150)
-        throw GradeTooLowException();
-    this->_grade = newAmount;
+    this->_grade--;
 }
 
-void Bureaucrat::reduceGrade(unsigned int num){
-    int newAmount = _grade + num;
-    if(newAmount < 1)
-        throw GradeTooHighException();
-    else if(newAmount > 150)
+void Bureaucrat::reduceGrade(){
+    if(_grade > 150)
         throw GradeTooLowException();
-    this->_grade = newAmount;
+    this->_grade++;
 }
 
 void Bureaucrat::signForm(AForm &src){

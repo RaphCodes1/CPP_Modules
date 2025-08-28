@@ -5,7 +5,9 @@ int main()
     
     Bureaucrat b("Kyle",10);
     try{
-        b.increaseGrade(-11);
+        b.increaseGrade();
+        b.reduceGrade();
+        b.reduceGrade();
     } catch(const Bureaucrat::GradeTooHighException& e){
         std::cerr << "caught exception: " << e.what() << std::endl;
     } catch(const Bureaucrat::GradeTooLowException& e){
