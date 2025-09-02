@@ -1,0 +1,35 @@
+// void charCheck(const std::string &literal)
+// {
+//     // Handle single character literals first
+//     if (literal.length() == 1 && !isdigit(literal[0]))
+//     {
+//         char c = literal[0];
+//         if (isprint(c)) {
+//             std::cout << "char: '" << c << "'" << std::endl;
+//         } else {
+//             std::cout << "char: Non displayable" << std::endl;
+//         }
+//     }
+//     // Handle numeric literals
+//     else 
+//     {
+//         // Use a more robust way to check if it's a valid number
+//         char* end;
+//         double val = strtod(literal.c_str(), &end);
+        
+//         // Check if the whole string was a valid number
+//         if (*end != '\0' && (*end != 'f' || end != &literal[literal.length()-1])) {
+//              std::cout << "char: impossible" << std::endl;
+//              return;
+//         }
+
+//         int ascii_val = static_cast<int>(val);
+//         if (val < 0 || val > 127) { // Check if it's outside ASCII range
+//             std::cout << "char: impossible" << std::endl;
+//         } else if (isprint(ascii_val)) {
+//             std::cout << "char: '" << static_cast<char>(ascii_val) << "'" << std::endl;
+//         } else {
+//             std::cout << "char: Non displayable" << std::endl;
+//         }
+//     }
+// }
