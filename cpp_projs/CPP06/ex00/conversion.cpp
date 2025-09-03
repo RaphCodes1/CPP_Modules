@@ -8,13 +8,20 @@ ScalarConverter::~ScalarConverter(){
     //std::cout << "ScalarConverter Destructor called" << std::endl;
 }
 
-void charCheck(const std::string &literal)
-{   
+bool checkEmpty(const std::string &literal)
+{
     if(literal.empty())
     {
         std::cout << "int: impossible" << std::endl;
-        return ;
+        return true;
     }
+    return false;
+}
+
+void charCheck(const std::string &literal)
+{   
+    if(checkEmpty(literal))
+        return ;
 
     if(literal.length() == 1 && !isdigit(literal[0]))
     {   
@@ -49,20 +56,22 @@ void charCheck(const std::string &literal)
 
 void intCheck(const std::string &literal)
 {   
-    if(literal.empty())
+    if(checkEmpty(literal))
+        return ;
+
+    if(literal == "nan")
     {
         std::cout << "int: impossible" << std::endl;
         return ;
     }
-
     char *endVal;
-    long double val = strtold(literal.c_str(),&endVal);
+    long double val = strtod(literal.c_str(),&endVal);
     
     if(&literal[0] == endVal)
         std::cout << "int: impossible" << std::endl;
     else if(*endVal != '\0' && (*endVal != 'f' || endVal != &literal[literal.length() - 1]))
         std::cout << "int: impossible" << std::endl;
-    else if((isnan(val) || isinf(val)) || (val > INT_MAX || val < INT_MIN))
+    else if((val > INT_MAX || val < INT_MIN))
         std::cout << "int: impossible" << std::endl;
     else
     {
@@ -71,23 +80,62 @@ void intCheck(const std::string &literal)
     }
 }
 
+int getPrecision(const std::string &literal)
+{
+    size_t decimalPos = literal.find('.');
+    if(decimalPos == std::string::npos)
+        return 1;
+    return literal.length() - decimalPos - 1;
+}
+
 void doubleCheck(const std::string &literal)
 {
-    if(literal.find('.') != std::string::npos)
-        std::cout << "double: '" << literal << "'" << std::endl;
-    else
+    if(checkEmpty(literal))
+        return ;
+
+    char *endVal;
+    long double val = strtod(literal.c_str(),&endVal);
+    
+    if(&literal[0] == endVal)
         std::cout << "double: impossible" << std::endl;
+    else if(*endVal != '\0' && (*endVal != 'f' || endVal != &literal[literal.length() - 1]))
+        std::cout << "double: impossible" << std::endl;
+    else
+    {   
+        int precision = getPrecision(literal);
+        if(*endVal == 'f')
+            precision -= 1;
+        std::cout << std::fixed << std::setprecision(precision);
+        std::cout << "double: " << val << std::endl;
+    }
 }
 
 void floatCheck(const std::string &literal)
-{
-    if(literal.find('.') != std::string::npos && literal[literal.length() - 1] == 'f')
-        std::cout << "double: '" << literal << "'" << std::endl;
+{   
+    if(checkEmpty(literal))
+        return ;
+
+    char *endVal;
+    long double val = strtod(literal.c_str(),&endVal);
+    
+    if(&literal[0] == endVal)
+        std::cout << "double: impossible" << std::endl;
+    else if(*endVal != '\0' && (*endVal != 'f' || endVal != &literal[literal.length() - 1]))
+        std::cout << "double: impossible" << std::endl;
     else
-        std::cout << "float: impossible" << std::endl;
+    {   
+        int precision = getPrecision(literal);
+        if(*endVal == 'f')
+            precision -= 1;
+        float toFloat = static_cast<float>(val);
+        std::cout << std::fixed << std::setprecision(precision);
+        std::cout << "float: " << toFloat << "f" << std::endl;
+    }
 }
+
 void ScalarConverter::convert(const std::string &literal){
     charCheck(literal);
     intCheck(literal);
+    floatCheck(literal);
+    doubleCheck(literal);
 }
-
