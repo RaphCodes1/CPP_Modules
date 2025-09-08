@@ -9,21 +9,14 @@ int main()
 {
     srand(time(0));
 
-    A a;
-    B b;
-    Base* randGen = NULL;
+    Base* ranGen = NULL;
 
-    Base* randomPointer = &a;
-    Base& randomReference = b;
-
-    Base* genPointer = randGen->generate();
-
-    std::cout << "Identifying pointer to A: ";
-    randomPointer->identify(randomPointer);
-
-    std::cout << "Identifying reference to B: ";
-    randomReference.identify(randomReference);
+    Base* randGenPointer = ranGen->generate();
+    Base& randReference = *randGenPointer;
     
     std::cout << "Identifying Random: ";
-    genPointer->identify(genPointer);
+    randGenPointer->identify(randGenPointer);
+
+    std::cout << "Identifying Random: ";
+    randReference.identify(randReference);
 }

@@ -9,15 +9,15 @@ Base::~Base(){
 
 Base *genA(void)
 {
-    return static_cast<Base *>(new A);
+    return new A;
 };
 Base *genB(void)
 {
-    return static_cast<Base *>(new B);
+    return new B;
 };
 Base *genC(void)
 {
-    return static_cast<Base *>(new C);
+    return new C;
 };
 
 Base * Base::generate(void)
