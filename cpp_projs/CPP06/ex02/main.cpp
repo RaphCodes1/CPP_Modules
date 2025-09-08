@@ -11,8 +11,12 @@ int main()
 
     A a;
     B b;
+    Base* randGen = NULL;
+
     Base* randomPointer = &a;
     Base& randomReference = b;
+
+    Base* genPointer = randGen->generate();
 
     std::cout << "Identifying pointer to A: ";
     randomPointer->identify(randomPointer);
@@ -20,4 +24,6 @@ int main()
     std::cout << "Identifying reference to B: ";
     randomReference.identify(randomReference);
     
+    std::cout << "Identifying Random: ";
+    genPointer->identify(genPointer);
 }
