@@ -8,11 +8,11 @@ ScalarConverter::~ScalarConverter(){
     //std::cout << "ScalarConverter Destructor called" << std::endl;
 }
 
-bool checkEmpty(const std::string &literal)
+bool checkEmpty(const std::string &literal,std::string val)
 {
     if(literal.empty())
     {
-        std::cout << "int: impossible" << std::endl;
+        std::cout << val << ": impossible" << std::endl;
         return true;
     }
     return false;
@@ -20,7 +20,7 @@ bool checkEmpty(const std::string &literal)
 
 void charCheck(const std::string &literal)
 {   
-    if(checkEmpty(literal))
+    if(checkEmpty(literal,"char"))
         return ;
 
     if(literal.length() == 1 && !isdigit(literal[0]))
@@ -40,7 +40,7 @@ void charCheck(const std::string &literal)
             std::cout << "char: impossible" << std::endl;
             return;
         }
-        else if((val < 0 || val > 127) || (isnan(val) || isinf(val)))
+        else if((val < 0 || val > 127))
         {
             std::cout << "char: impossible" << std::endl;
             return;
@@ -56,7 +56,7 @@ void charCheck(const std::string &literal)
 
 void intCheck(const std::string &literal)
 {   
-    if(checkEmpty(literal))
+    if(checkEmpty(literal,"int"))
         return ;
 
     if(literal == "nan")
@@ -90,7 +90,7 @@ int getPrecision(const std::string &literal)
 
 void doubleCheck(const std::string &literal)
 {
-    if(checkEmpty(literal))
+    if(checkEmpty(literal,"double"))
         return ;
 
     char *endVal;
@@ -112,7 +112,7 @@ void doubleCheck(const std::string &literal)
 
 void floatCheck(const std::string &literal)
 {   
-    if(checkEmpty(literal))
+    if(checkEmpty(literal,"float"))
         return ;
 
     char *endVal;

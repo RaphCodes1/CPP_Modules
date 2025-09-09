@@ -6,6 +6,3 @@
 Base::~Base(){
     //std::cout << "Base Destructor Called" << std::endl;
 };
-
-
-
