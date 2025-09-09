@@ -18,6 +18,7 @@ bool checkEmpty(const std::string &literal,std::string val)
     return false;
 }
 
+//static cast is used for safe, compile-time conversions between related types (int,float,double)
 void charCheck(const std::string &literal)
 {   
     if(checkEmpty(literal,"char"))
