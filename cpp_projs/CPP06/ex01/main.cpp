@@ -8,7 +8,7 @@ int main(){
     myData.value = 42;
 
     Data *pointerData = &myData;
-    unsigned long addressAsInt = Serialization::serialize(pointerData);
+    uintptr_t addressAsInt = Serialization::serialize(pointerData);
 
     std::cout << "Original Pointer: " << pointerData << std::endl;
     std::cout << "Serialized to unsigned int: " << addressAsInt << std::endl;
