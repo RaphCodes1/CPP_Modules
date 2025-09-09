@@ -11,7 +11,7 @@ class Serialization {
         Serialization();
         ~Serialization();
     public:
-        static uintptr_t serialize(Data *ptr);
+        static unsigned long serialize(Data *ptr);
         static Data* deserialize(unsigned long raw);
 };
 
