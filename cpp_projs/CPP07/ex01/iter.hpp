@@ -1,9 +1,21 @@
 #ifndef ITER_HPP
 # define ITER_HPP
 
-template<typename T>
-void iter(T& address, T length, T func)
+#include <iostream>
+#include <string>
+
+template<typename T,size_t N>
+void iter(T (&arr)[N], size_t const length, void (*func)(T&))
 {
-    
+    for(size_t i = 0; i < length; i++)
+    {
+        func(arr[i]);
+    }
+}
+
+template<typename T>
+void toPrint(T &a)
+{
+    std::cout << a << std::endl;
 }
 #endif
