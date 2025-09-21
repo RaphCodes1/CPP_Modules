@@ -14,8 +14,19 @@ void iter(T (&arr)[N], size_t const length, void (*func)(T&))
 }
 
 template<typename T>
-void toPrint(T &a)
+void toPrint(const T &a)
 {
     std::cout << a << std::endl;
+}
+
+template<typename T>
+void toPrint(T &a)
+{
+    std::cout << a << ",";
+}
+
+template<typename T>
+void toShift(T& a){
+    a++;
 }
 #endif

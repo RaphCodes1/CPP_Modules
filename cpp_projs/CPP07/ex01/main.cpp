@@ -6,7 +6,14 @@
 int main(){
     char charArr[] = {'a','b','c','d','e'};
     int intArr[] = {1,2,3,4,5};
+
+    const char charConst[] = {'a','b','c','d','e'};
+
     int length = 5;
-    ::iter(charArr, length, &toPrint);
+    ::iter(charConst, length, &toPrint);
+    ::iter(charArr,length, &toPrint);
     ::iter(intArr, length, &toPrint);
+
+    ::iter(charArr,length,&toShift);
+    std::cout << charArr << std::endl;
 }
