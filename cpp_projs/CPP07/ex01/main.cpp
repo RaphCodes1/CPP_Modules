@@ -13,7 +13,4 @@ int main(){
     ::iter(charConst, length, &toPrint);
     ::iter(charArr,length, &toPrint);
     ::iter(intArr, length, &toPrint);
-
-    ::iter(charArr,length,&toShift);
-    std::cout << charArr << std::endl;
 }

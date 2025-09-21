@@ -25,8 +25,4 @@ void toPrint(T &a)
     std::cout << a << ",";
 }
 
-template<typename T>
-void toShift(T& a){
-    a++;
-}
 #endif
