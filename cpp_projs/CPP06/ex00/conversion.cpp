@@ -24,6 +24,11 @@ void charCheck(const std::string &literal)
     if(checkEmpty(literal,"char"))
         return ;
 
+    if(literal == "nan")
+    {
+        std::cout << "char: impossible" << std::endl;
+        return ;
+    }
     if(literal.length() == 1 && !isdigit(literal[0]))
     {   
         if(isprint(literal[0]))
