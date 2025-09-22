@@ -31,6 +31,6 @@ T& Array<T>::operator[](unsigned int index){
 }
 
 template <typename T>
-T& Array<T>::size(){
+int Array<T>::size(){
     return _size;
 }

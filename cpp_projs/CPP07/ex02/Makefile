@@ -1,8 +1,10 @@
-NAME = iter
+NAME = array
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp
+
 OBJS = $(SRCS:.cpp=.o)
+DEPS = Array.hpp Array.tpp
 RM = rm -f
 
 all:$(NAME)
@@ -10,7 +12,7 @@ all:$(NAME)
 $(NAME):$(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o:%.cpp
+%.o:%.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:

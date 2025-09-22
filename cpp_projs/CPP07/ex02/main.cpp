@@ -1,22 +1,36 @@
 #include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 5
 int main(int, char**)
-{
+{   
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
     for (int i = 0; i < MAX_VAL; i++)
     {
-        const int value = rand();
+        const int value = rand() % 20;
         numbers[i] = value;
         mirror[i] = value;
     }
-    //SCOPE
+
+    std::cout << "size of array: " << numbers.size() << std::endl;
+
+    //priting for array above
+    for(int i = 0; i < MAX_VAL; i++)
+    {
+        std::cout << numbers[i] << "||" << mirror[i] << std::endl;
+    }
+
+    std::cout << "----------------------------" << std::endl;
+    //SCOPE & priting
     {
         Array<int> tmp = numbers;
         Array<int> test(tmp);
+        for(int i = 0; i < MAX_VAL; i++)
+        {
+            std::cout << tmp[i] << "||" << test[i] << std::endl;
+        }
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -27,6 +41,9 @@ int main(int, char**)
             return 1;
         }
     }
+
+    std::cout << "--------------------------" << std::endl;
+    //Exception error
     try
     {
         numbers[-2] = 0;
@@ -44,9 +61,11 @@ int main(int, char**)
         std::cerr << e.what() << '\n';
     }
 
+    std::cout << "--------------------------" << std::endl;
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
+        std::cout << numbers[i] << std::endl;
     }
     delete [] mirror;//
     return 0;
