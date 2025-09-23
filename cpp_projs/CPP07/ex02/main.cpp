@@ -1,4 +1,4 @@
-#include "Array.hpp"
+#include <Array.hpp>
 
 #define MAX_VAL 5
 int main(int, char**)
