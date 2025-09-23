@@ -25,7 +25,7 @@ Array<T> &Array<T>::operator=(const Array<T> &src){
 
 template <typename T>
 T& Array<T>::operator[](unsigned int index){
-    if (index >= _size)
+    if (index > _size)
         throw std::exception();
     return _elements[index];
 }
