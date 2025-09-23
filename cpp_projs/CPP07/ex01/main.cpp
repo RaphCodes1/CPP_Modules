@@ -17,9 +17,18 @@ int main(){
     const char charConst[] = {'a','b','c','d','e'};
 
     ::iter(charConst, 5, toPrint<const char>);
+    std::cout << std::endl;
     ::iter(charArr,5, toPrint<char>);
+    std::cout << std::endl;
     ::iter(intArr, 5, toPrint<int>);
+    std::cout << std::endl;
 
     ::iter(intArr, 5, increment<int>);
+    std::cout << std::endl;
     ::iter(intArr, 5, toPrint<int>);
+    std::cout << std::endl;
+    ::iter(charArr, 5, increment<char>);
+    std::cout << std::endl;
+    ::iter(charArr, 5, toPrint<char>);
+    std::cout << std::endl;
 }

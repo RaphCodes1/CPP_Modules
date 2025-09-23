@@ -62,6 +62,7 @@ int main(int, char**)
     }
 
     std::cout << "--------------------------" << std::endl;
+    std::cout << "---------new val----------" << std::endl;
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
