@@ -6,10 +6,10 @@ void increment(T& a){
 }
 
 template<typename T>
-void toPrint(T &a)
-{
+void toPrint(T &a){
     std::cout << a << " ";
 }
+
 int main(){
     char charArr[] = {'a','b','c','d','e'};
     int intArr[] = {1,2,3,4,5};
