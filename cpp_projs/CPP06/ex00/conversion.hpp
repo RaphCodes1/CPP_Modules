@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <cctype>
-#include <limits>
+#include <climits>
 #include <sstream>
 #include <cstdlib>
 #include <cmath>
