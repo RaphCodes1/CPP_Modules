@@ -1,15 +1,24 @@
 #pragma once
 
+#include <algorithm>
+#include <iostream>
+#include <span>
+#include <vector>
+
 class Span{
     private:
+        std::vector<int> _numbers;
+        unsigned int _size;
     public:
         Span();
         Span(unsigned int size);
         ~Span();
-        Span(Span& src);
-        Span &operator=(Span& src);
-        void addNumber(unsigned int num);
+        Span(const Span& src);
+        Span &operator=(const Span& src);
+        void addNumber(int num);
         void shortestSpan();
         void longestSpan();
+
+        void printVal();
 };
 
