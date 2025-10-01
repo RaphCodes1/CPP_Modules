@@ -8,4 +8,6 @@ int main()
         a.addNumber(i);
     
     a.printVal();
+
+    std::cout << a.shortestSpan() << std::endl;
 }

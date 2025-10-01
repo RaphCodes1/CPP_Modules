@@ -5,6 +5,13 @@
 #include <span>
 #include <vector>
 
+class SpanErrorException: public std::exception{
+    public:
+        const char* what() const throw(){
+            return "Span error";
+        };
+};
+
 class Span{
     private:
         std::vector<int> _numbers;
@@ -16,8 +23,8 @@ class Span{
         Span(const Span& src);
         Span &operator=(const Span& src);
         void addNumber(int num);
-        void shortestSpan();
-        void longestSpan();
+        int shortestSpan();
+        int longestSpan();
 
         void printVal();
 };

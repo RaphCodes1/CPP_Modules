@@ -30,3 +30,19 @@ void Span::printVal(){
     }
     std::cout << std::endl;
 }
+
+int Span::shortestSpan(){
+    std::vector<int> sorted = _numbers;
+
+    std::sort(sorted.begin(), sorted.end());
+
+    int shortestNum = std::numeric_limits<int>::max();
+
+    std::cout << "shortest num for now: " << shortestNum << std::endl;
+    for(size_t i = 0; i < sorted.size() - 1; i++){
+        int difference = sorted[i + 1] - sorted[i];
+        shortestNum = difference;
+    }
+
+    return shortestNum;
+}
