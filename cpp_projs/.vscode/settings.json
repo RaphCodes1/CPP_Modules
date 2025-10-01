@@ -63,6 +63,14 @@
         "vector": "cpp",
         "deque": "cpp",
         "fstream": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "clocale": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "memory_resource": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "numbers": "cpp",
+        "span": "cpp"
     }
 }

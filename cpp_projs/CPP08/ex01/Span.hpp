@@ -4,6 +4,7 @@
 #include <iostream>
 #include <span>
 #include <vector>
+#include <limits>
 
 class SpanErrorException: public std::exception{
     public:

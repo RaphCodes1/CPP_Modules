@@ -20,6 +20,8 @@ Span &Span::operator=(const Span& src){
 }
 
 void Span::addNumber(int num){
+    if(_numbers.size() == _size)
+        throw SpanErrorException();
     this->_numbers.push_back(num);
 }
 
@@ -37,12 +39,18 @@ int Span::shortestSpan(){
     std::sort(sorted.begin(), sorted.end());
 
     int shortestNum = std::numeric_limits<int>::max();
-
-    std::cout << "shortest num for now: " << shortestNum << std::endl;
     for(size_t i = 0; i < sorted.size() - 1; i++){
         int difference = sorted[i + 1] - sorted[i];
-        shortestNum = difference;
+        if(difference < shortestNum)
+            shortestNum = difference;
     }
-
     return shortestNum;
+}
+
+int Span::longestSpan(){
+    std::vector<int> sorted = _numbers;
+
+    std::sort(sorted.begin(), sorted.end());
+
+    return sorted.back() - sorted.front();
 }
