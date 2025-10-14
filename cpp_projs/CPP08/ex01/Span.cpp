@@ -27,6 +27,10 @@ void Span::addNumber(int num){
 
 
 int Span::shortestSpan(){
+
+    if(_numbers.size() <= 1)
+        throw SpanErrorException();
+
     std::vector<int> sorted = _numbers;
 
     std::sort(sorted.begin(), sorted.end());
@@ -41,6 +45,9 @@ int Span::shortestSpan(){
 }
 
 int Span::longestSpan(){
+    if(_numbers.size() <= 1)
+        throw SpanErrorException();
+
     std::vector<int> sorted = _numbers;
 
     std::sort(sorted.begin(), sorted.end());
@@ -50,4 +57,10 @@ int Span::longestSpan(){
 
 int Span::getSize(){
     return _size;
+}
+
+void Span::addNumber(std::vector<int>::iterator start, std::vector<int>::iterator end){
+    if(_numbers.size() + std::distance(start,end) > _size)
+        throw SpanErrorException();
+    _numbers.insert(_numbers.end(),start,end);
 }
