@@ -1,7 +1,4 @@
 #include "Span.hpp"
-#include <random>
-#include <cstdlib>
-#include <ctime>
 int main()
 {
     Span sp = Span(5);

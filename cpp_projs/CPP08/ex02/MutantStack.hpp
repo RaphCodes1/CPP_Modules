@@ -3,24 +3,18 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-
-// template<typename T>
-// typename T MutantStack()
+#include <stack>
 
 template<typename T>
-class MutantStack{
-    private:
-        std::vector<T> stack;
+class MutantStack : public std::stack<T>{
+    public:
         MutantStack();
         ~MutantStack();
-        MutantStack(const MutantStack &src);
-        MutantStack &operator=(const MutantStack &src);
-    public:
-        void push(T val);
-        void pop();
-        std::vector<T>* top();
-        void empty();
-        void size();
+        MutantStack(const MutantStack<T> &src);
+        MutantStack &operator=(const MutantStack<T> &src);
+        typedef typename std::deque<T>::iterator iterator;
+        iterator begin();
+        iterator end();
 };
 
 #include "MutantStack.tpp"

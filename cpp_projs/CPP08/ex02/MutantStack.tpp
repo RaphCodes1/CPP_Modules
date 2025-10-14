@@ -7,22 +7,23 @@ template<typename T>
 MutantStack<T>::~MutantStack(){}
 
 template<typename T>
-MutantStack<T>::MutantStack(const MutantStack& src){}
-
-template<typename T>
-MutantStack<T> &MutantStack<T>::operator=(const MutantStack& src){};
-
-template<typename T>
-void MutantStack<T>::push(T val){
-    stack.push_back(val);
+MutantStack<T>::MutantStack(const MutantStack<T>& src){
+    *this->stack = src.stack;
 }
 
 template<typename T>
-void MutantStack<T>::pop(){
-    stack.pop_back();
+MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T>& src){
+    if(this != &src)
+        *this->stack = src.stack;
+    return *this;
+};
+
+template<typename T>
+typename MutantStack<T>::iterator MutantStack<T>::begin(){
+    return this->c.begin();
 }
 
 template<typename T>
-std::vector<T>* MutantStack<T>::top(){
-    return &stack[0];
+typename MutantStack<T>::iterator MutantStack<T>::end(){
+    return this->c.end();
 }
