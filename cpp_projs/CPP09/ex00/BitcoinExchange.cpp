@@ -20,6 +20,16 @@ void Btc::errorFile(){
     std::cerr << "Error: could not open file." << std::endl;
 }
 
+void Btc::printInput(){
+    std::map<std::string, double>::const_iterator it;
+
+    for(it = _input.begin(); it != _input.end(); it++)
+    {
+        std::cout << it->first << " => " << it->second << std::endl; 
+    }
+}
+
+
 bool Btc::fileExtract(std::string file){
     std::ifstream inputFile(file);
     if(!inputFile.is_open())
@@ -28,11 +38,29 @@ bool Btc::fileExtract(std::string file){
         return (false);
     }
 
-    char delimiter = ',';
-    
     std::string line;
+    if(std::getline(inputFile,line)){}
+
     while (std::getline(inputFile,line)){
-        std::cout << line << std::endl;
+        size_t delimeter_pos = line.find('|');
+        
+        if(delimeter_pos == std::string::npos)
+            continue;
+        
+        std::string key = line.substr(0, delimeter_pos - 1);
+        std::string val = line.substr(delimeter_pos - 2);
+        
+        try{
+            double num = std::stod(val);
+            this->_input[key] += num;
+        } catch(const std::exception &e){
+            std::cerr << e.what() << std::endl;
+        }
+        
+
+        
+        
+        
     }
     
     inputFile.close();

@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 class Btc{
     private:
@@ -19,6 +20,7 @@ class Btc{
 
         void errorFile();
         bool fileExtract(std::string file);
+        void printInput();
         
 };
 
