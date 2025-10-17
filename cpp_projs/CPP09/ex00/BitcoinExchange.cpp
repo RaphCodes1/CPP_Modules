@@ -76,16 +76,6 @@ void trimSpaces(std::string &s){
     endTrim(s);
 }
 
-// std::map<std::string, double>::iterator Btc::finder(std::string val){
-//     std::map<std::string, double>::iterator findKey = _data.lower_bound(val);
-//     if(findKey != _data.begin()){
-//         --findKey;
-//     } else {
-//         std::cout << "Error: " << _data.begin()->first << " => No date earlier found." << std::endl;
-//     }
-//     return findKey;
-// }
-
 double Btc::finder(std::string val){
     std::map<std::string, double>::iterator findKey = _data.lower_bound(val);
     if(findKey != _data.begin()){
@@ -95,6 +85,61 @@ double Btc::finder(std::string val){
         return (-1);
     }
     return findKey->second;
+}
+
+bool validDate(std::string &s){
+    if(s.length() != 10)
+        return false;
+    
+    if(s[4] != '-' || s[7] != '-')
+        return false;
+    
+    for(size_t i = 0; i < s.length(); i++)
+    {
+        if(i == 4 || i == 7)
+            continue;
+        if(!isdigit(static_cast<unsigned int>(s[i])))
+            return false;
+        if(i == 5)
+        {    
+            if(s[i] > '1') {
+                return false;
+            } else if(s[i] == '1' && s[i + 1] > '2'){
+                return false;
+            }
+        }
+        else if(i == 8)
+        {
+            if(s[i] > '3'){
+                return false;
+            } else if(s[i] == '3' && s[i + 1] > '1'){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool validNum(const std::string &s){
+    for(size_t i = 0; i < s.length(); i++)
+    {
+        if(!isdigit(static_cast<unsigned char>(s[i])))
+        {
+            if(s[i] == '.')
+                continue;
+            else if(s[i] == '-')
+            {
+                std::cout << "Error: not a positive number." << std::endl;
+                return false;
+            }
+            else
+            {
+                std::cout << "Error: Invalid Number" << std::endl;
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 bool Btc::extractInput(std::string file){
@@ -125,14 +170,16 @@ bool Btc::extractInput(std::string file){
 
         trimSpaces(key);
         trimSpaces(val);
-
-        num = atof(val.c_str());
-        if(num < 0)
+        if(!validDate(key))
         {
-            std::cout << "Error: not a positive number." << std::endl;
+            std::cout << "Error: Invalid Date" << std::endl;
             continue;
         }
-        else if(num > INT_MAX)
+        else if(!validNum(val))
+            continue;
+
+        num = atof(val.c_str());
+        if(num > INT_MAX)
         {
             std::cout << "Error: too large of a number." << std::endl;
             continue;
