@@ -21,7 +21,9 @@ class Btc{
         void errorFile();
         bool extractCSV(std::string file);
         void printInput();
+
         bool extractInput(std::string file);
+        double finder(std::string val);
         
 };
 

@@ -76,6 +76,27 @@ void trimSpaces(std::string &s){
     endTrim(s);
 }
 
+// std::map<std::string, double>::iterator Btc::finder(std::string val){
+//     std::map<std::string, double>::iterator findKey = _data.lower_bound(val);
+//     if(findKey != _data.begin()){
+//         --findKey;
+//     } else {
+//         std::cout << "Error: " << _data.begin()->first << " => No date earlier found." << std::endl;
+//     }
+//     return findKey;
+// }
+
+double Btc::finder(std::string val){
+    std::map<std::string, double>::iterator findKey = _data.lower_bound(val);
+    if(findKey != _data.begin()){
+        --findKey;
+    } else {
+        std::cout << "Error: " << _data.begin()->first << " => No date earlier found." << std::endl;
+        return (-1);
+    }
+    return findKey->second;
+}
+
 bool Btc::extractInput(std::string file){
     std::ifstream inputFile(file.c_str());
     if(!inputFile.is_open())
@@ -116,14 +137,10 @@ bool Btc::extractInput(std::string file){
             std::cout << "Error: too large of a number." << std::endl;
             continue;
         }
-        std::map<std::string, double>::iterator findKey = _data.lower_bound(val);
-        if(findKey != _data.begin()){
-            --findKey;
-        } else {
-            std::cout << "Error: " << _data.begin()->first << " => No date earlier found." << std::endl;
+        else if(finder(key) == - 1)
             continue;
-        }
-        std::cout << key << " => " << num << " = " << num * findKey->second << std::endl;
+        double mapNum = finder(key);
+        std::cout << key << " => " << num << " = " << num * mapNum << std::endl;
     }
     inputFile.close();
     return (true);
