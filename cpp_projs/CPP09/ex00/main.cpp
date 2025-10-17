@@ -4,9 +4,9 @@ int main(int ac, char **av)
     Btc btcObj;
     if(ac == 2)
     {   
-        if(!btcObj.fileExtract(av[1]))
+        if(!btcObj.extractInput(av[1]))
             return (1);
-        btcObj.printInput();
+        // btcObj.printInput();
         return (0);
     }
     else

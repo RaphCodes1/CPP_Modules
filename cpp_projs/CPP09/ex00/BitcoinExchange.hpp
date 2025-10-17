@@ -6,12 +6,12 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <cstdlib>
+#include <limits.h>
 
 class Btc{
     private:
         std::map<std::string, double> _data;
-        std::map<std::string, double> _input;
-
     public:
         Btc();
         ~Btc();
@@ -19,8 +19,9 @@ class Btc{
         Btc &operator=(const Btc& src);
 
         void errorFile();
-        bool fileExtract(std::string file);
+        bool extractCSV(std::string file);
         void printInput();
+        bool extractInput(std::string file);
         
 };
 

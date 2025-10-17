@@ -1,17 +1,19 @@
 #include "BitcoinExchange.hpp"
 
-Btc::Btc(){};
+Btc::Btc(){
+    extractCSV("data.csv");
+};
 
 Btc::~Btc(){};
 
 Btc::Btc(const Btc& src){
-    *this = src;
+    this->_data = src._data;
 };
 
 Btc &Btc::operator=(const Btc& src){
     if(this != &src)
     {
-        *this = src;
+        this->_data = src._data;
     }
     return *this;
 };
@@ -22,47 +24,107 @@ void Btc::errorFile(){
 
 void Btc::printInput(){
     std::map<std::string, double>::const_iterator it;
-
-    for(it = _input.begin(); it != _input.end(); it++)
+    for(it = _data.begin(); it != _data.end(); it++)
     {
         std::cout << it->first << " => " << it->second << std::endl; 
     }
 }
 
-
-bool Btc::fileExtract(std::string file){
-    std::ifstream inputFile(file);
+bool Btc::extractCSV(std::string file){
+    std::ifstream inputFile(file.c_str());
     if(!inputFile.is_open())
     {
         errorFile();
         return (false);
     }
-
     std::string line;
+    std::string key;
+    std::string val;
     if(std::getline(inputFile,line)){}
 
     while (std::getline(inputFile,line)){
-        size_t delimeter_pos = line.find('|');
+        size_t delimeter_pos = line.find(',');
         
         if(delimeter_pos == std::string::npos)
             continue;
         
-        std::string key = line.substr(0, delimeter_pos - 1);
-        std::string val = line.substr(delimeter_pos - 2);
+        key = line.substr(0, delimeter_pos);
+        val = line.substr(delimeter_pos + 1);
         
         try{
-            double num = std::stod(val);
-            this->_input[key] += num;
+            _data.insert(std::make_pair(key,atof(val.c_str())));
         } catch(const std::exception &e){
             std::cerr << e.what() << std::endl;
-        }
-        
-
-        
-        
-        
+        }        
     }
-    
+    inputFile.close();
+    return (true);
+}
+
+void startTrim(std::string &s){
+    size_t start = s.find_first_not_of(" ");
+    s.erase(0,start);
+}
+
+void endTrim(std::string &s){
+    size_t end = s.find_last_not_of(" ");
+    s.erase(end + 1);
+}
+
+void trimSpaces(std::string &s){
+    startTrim(s);
+    endTrim(s);
+}
+
+bool Btc::extractInput(std::string file){
+    std::ifstream inputFile(file.c_str());
+    if(!inputFile.is_open())
+    {
+        errorFile();
+        return (false);
+    }
+    std::string line;
+    std::string key;
+    std::string val;
+    double num;
+    if(std::getline(inputFile,line)){}
+
+    while(std::getline(inputFile,line)){
+        trimSpaces(line);
+        size_t delimeter_pos = line.find('|');
+
+        if(delimeter_pos == std::string::npos)
+        {
+            std::cout << "Error: bad input => " << line << std::endl;
+            continue;
+        }
+
+        key = line.substr(0, delimeter_pos);
+        val = line.substr(delimeter_pos + 1);
+
+        trimSpaces(key);
+        trimSpaces(val);
+
+        num = atof(val.c_str());
+        if(num < 0)
+        {
+            std::cout << "Error: not a positive number." << std::endl;
+            continue;
+        }
+        else if(num > INT_MAX)
+        {
+            std::cout << "Error: too large of a number." << std::endl;
+            continue;
+        }
+        std::map<std::string, double>::iterator findKey = _data.lower_bound(val);
+        if(findKey != _data.begin()){
+            --findKey;
+        } else {
+            std::cout << "Error: " << _data.begin()->first << " => No date earlier found." << std::endl;
+            continue;
+        }
+        std::cout << key << " => " << num << " = " << num * findKey->second << std::endl;
+    }
     inputFile.close();
     return (true);
 }
