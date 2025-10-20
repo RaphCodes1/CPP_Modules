@@ -121,6 +121,11 @@ bool validDate(std::string &s){
 }
 
 bool validNum(const std::string &s){
+    if(s.empty())
+    {
+        std::cerr << "Error: No valid number found." << std::endl;
+        return false;
+    }
     for(size_t i = 0; i < s.length(); i++)
     {
         if(!isdigit(static_cast<unsigned char>(s[i])))
@@ -129,12 +134,12 @@ bool validNum(const std::string &s){
                 continue;
             else if(s[i] == '-')
             {
-                std::cout << "Error: not a positive number." << std::endl;
+                std::cerr << "Error: not a positive number." << std::endl;
                 return false;
             }
             else
             {
-                std::cout << "Error: Invalid Number" << std::endl;
+                std::cerr << "Error: Invalid Number" << std::endl;
                 return false;
             }
         }
@@ -161,18 +166,20 @@ bool Btc::extractInput(std::string file){
 
         if(delimeter_pos == std::string::npos)
         {
-            std::cout << "Error: bad input => " << line << std::endl;
+            std::cerr << "Error: bad input => " << line << std::endl;
             continue;
         }
 
         key = line.substr(0, delimeter_pos);
         val = line.substr(delimeter_pos + 1);
 
+        // std::cout << "Val: " << val << std::endl;
+
         trimSpaces(key);
         trimSpaces(val);
         if(!validDate(key))
         {
-            std::cout << "Error: Invalid Date" << std::endl;
+            std::cerr << "Error: Invalid Date" << std::endl;
             continue;
         }
         else if(!validNum(val))
@@ -181,7 +188,7 @@ bool Btc::extractInput(std::string file){
         num = atof(val.c_str());
         if(num > INT_MAX)
         {
-            std::cout << "Error: too large of a number." << std::endl;
+            std::cerr << "Error: Too large of a number." << std::endl;
             continue;
         }
         else if(finder(key) == - 1)
