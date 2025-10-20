@@ -16,3 +16,10 @@ RPN &RPN::operator=(const RPN& src){
     return *this;
 }
 
+void RPN::RPNprocess(std::string s){
+    
+    std::cout << s << std::endl;
+    
+
+}
+

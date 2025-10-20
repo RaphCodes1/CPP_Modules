@@ -12,4 +12,6 @@ class RPN{
         ~RPN();
         RPN(const RPN& src);
         RPN &operator=(const RPN& src);
+
+        void RPNprocess(std::string s);
 };

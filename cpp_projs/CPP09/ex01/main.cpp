@@ -1,10 +1,11 @@
-#include "RPN.cpp"
+#include "RPN.hpp"
 
 int main(int ac, char **av)
-{
-    if(ac > 1)
+{   
+    RPN rpnObj;
+    if(ac == 2)
     {
-        
+        rpnObj.RPNprocess(av[1]);
     }
     else
         std::cerr << "Error" << std::endl;
