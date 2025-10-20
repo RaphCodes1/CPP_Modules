@@ -87,6 +87,43 @@ double Btc::finder(std::string val){
     return findKey->second;
 }
 
+bool datesCheck(std::string &s)
+{
+    int year;
+    int month;
+    int day;
+    char delimeterOne;
+    char delimeterTwo;
+
+    bool isLeapYear = false;
+    int monthLength = 31;
+    std::istringstream date(s);
+    date >> year >> delimeterOne >> month >> delimeterTwo >> day;
+
+    if(date.fail() || !date.eof())
+        return false;
+
+    if(month < 1 || month > 12)
+        return false;
+
+    if((year % 4 == 0 && (year % 100 != 0)) || (year % 400 == 0))
+        isLeapYear = true;
+    
+    if(month == 4 || month == 6 || month == 9 || month == 11)
+        monthLength = 30;
+    else if(month == 2)
+    {
+        if(isLeapYear)
+            monthLength = 29;
+        else
+            monthLength = 28;
+    }
+    
+    if(day > monthLength || day < 1)
+        return false;
+    return true;  
+}
+
 bool validDate(std::string &s){
     if(s.length() != 10)
         return false;
@@ -117,6 +154,9 @@ bool validDate(std::string &s){
             }
         }
     }
+    //check valid leap year
+    if(!datesCheck(s))
+        return false;
     return true;
 }
 
@@ -172,8 +212,6 @@ bool Btc::extractInput(std::string file){
 
         key = line.substr(0, delimeter_pos);
         val = line.substr(delimeter_pos + 1);
-
-        // std::cout << "Val: " << val << std::endl;
 
         trimSpaces(key);
         trimSpaces(val);
