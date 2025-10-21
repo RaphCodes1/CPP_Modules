@@ -6,7 +6,7 @@
 #include <stack>
 class RPN{
     private:
-        std::stack<int> queue;
+        std::stack<long long> queue;
     public:
         RPN();
         ~RPN();
