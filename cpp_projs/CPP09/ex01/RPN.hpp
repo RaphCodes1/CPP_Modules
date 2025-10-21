@@ -13,5 +13,5 @@ class RPN{
         RPN(const RPN& src);
         RPN &operator=(const RPN& src);
 
-        void RPNprocess(std::string s);
+        bool RPNprocess(std::string s);
 };
