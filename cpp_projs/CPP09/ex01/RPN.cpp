@@ -37,7 +37,7 @@ bool checkValid(std::string &s)
     return true;
 }
 
-long long operationDone(char operation, long long one, long long two)
+long double operationDone(char operation, long double one, long double two)
 {
     if(operation == '+')
         return one + two;
@@ -57,9 +57,9 @@ bool RPN::RPNprocess(std::string s){
         errorMsg();
         return false; }
     char operation = '0';
-    long long numOne;
-    long long numTwo;
-    long long res;
+    long double numOne;
+    long double numTwo;
+    long double res;
 
     for(size_t i = 0; i < s.length(); i++)
     {   
