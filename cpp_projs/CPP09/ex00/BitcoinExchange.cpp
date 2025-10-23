@@ -187,6 +187,23 @@ bool validNum(const std::string &s){
     return true;
 }
 
+bool headCheck(std::string s){
+    std::string date;
+    std::string pipe;
+    std::string value;
+
+    std::istringstream head(s);
+
+    head >> date >> pipe >> value;
+    trimSpaces(date);
+    trimSpaces(pipe);
+    trimSpaces(value);
+
+    if(date != "date" || pipe != "|" || value != "value")
+        return false;
+    return true;
+}
+
 bool Btc::extractInput(std::string file){
     std::ifstream inputFile(file.c_str());
     if(!inputFile.is_open())
@@ -199,6 +216,12 @@ bool Btc::extractInput(std::string file){
     std::string val;
     double num;
     if(std::getline(inputFile,line)){}
+
+    if(!headCheck(line))
+    {
+        std::cerr << "Enter Valid Input. (date | value)" << std::endl;
+        return false;
+    }
 
     while(std::getline(inputFile,line)){
         trimSpaces(line);
