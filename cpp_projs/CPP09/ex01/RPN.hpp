@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <vector>
 #include <stack>
+#include <sstream>
+
 class RPN{
     private:
         std::stack<long double> queue;
