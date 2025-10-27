@@ -10,12 +10,8 @@
 
 class PmergeMe{
     private:
-        std::list<int> main;
-        std::list<int> sorted;
-        std::vector<std::pair<int,int> > pairs;
-        std::list<int> a;
-        std::list<int> b;
-        int straggler;
+        std::vector<int> _mainVector;
+        std::vector<int> _sortedVector;
 
     public:
         PmergeMe();
@@ -24,5 +20,8 @@ class PmergeMe{
         PmergeMe &operator=(const PmergeMe &src);
 
         bool inputCheck(std::string &s);
-        void fordJohnsonAlgorithm();
+        std::vector<int> fordJohnsonAlgorithmVector(std::vector<int> input);
+
+        void doAlgorithm();
 };
+

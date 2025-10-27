@@ -1,8 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(){
-    this->straggler = -1;
-};
+PmergeMe::PmergeMe(){};
 
 PmergeMe::~PmergeMe(){};
 
@@ -29,7 +27,7 @@ bool PmergeMe::inputCheck(std::string &s)
         if(result < 0 || result > INT_MAX)
             return false;
         // std::cout << result << std::endl;
-        main.push_back(result);
+        _mainVector.push_back(result);
     }
     else
         return false;
@@ -37,79 +35,114 @@ bool PmergeMe::inputCheck(std::string &s)
 
 }
 
-void PmergeMe::fordJohnsonAlgorithm(){
 
-    int sizeMain = main.size();
-    if(sizeMain % 2 != 0)
+std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(std::vector<int> main){
+
+    if(main.size() < 2)
+        return main;
+
+    std::vector<std::pair<int,int> > pairs;
+    int straggler = 0;
+    bool hasStraggler = false;
+
+    if(main.size() % 2 != 0)
     {
         straggler = main.back();
-        sizeMain -= 1;
+        hasStraggler = true;
+        main.pop_back();
     }
 
-    std::list<int>::iterator begin = main.begin();
-    for(int i = sizeMain; i != 0; i /= 2)
+    std::vector<int>::iterator begin = main.begin();
+    while(std::distance(begin,main.end()) >= 2){
+        int firstVal = *(begin++);
+        int secondVal = *(begin++);
+
+        if(firstVal > secondVal)
+            pairs.push_back(std::make_pair(secondVal, firstVal));
+        else
+            pairs.push_back(std::make_pair(firstVal, secondVal));
+    }
+
+    std::vector<int> a;
+    std::vector<int> b;
+    for(std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
     {
-        pairs.push_back(std::make_pair(*begin,*(++begin)));
-        begin++;
+        a.push_back(it->second);
+        b.push_back(it->first);
     }
 
-    for(size_t i = 0; i < pairs.size(); i++)
+    std::vector<int> mainChain = fordJohnsonAlgorithmVector(a);
+
+    if(!b.empty())
     {
-        if(pairs[i].first > pairs[i].second)
-            std::swap(pairs[i].first, pairs[i].second);
+        mainChain.insert(mainChain.begin(),b.front());
+        b.erase(b.begin());
     }
 
-    for(size_t i = 0; i < pairs.size(); i++)
+    // std::vector<int>::iterator mainIt;
+    // for(std::vector<int>::iterator itB = b.begin(); itB != b.end();itB++)
+    // {
+    //     mainIt = std::lower_bound(mainChain.begin(),mainChain.end(),*itB);
+    //     mainChain.insert(mainIt,*itB);
+    // }
+
+    //j = prev + (2 * curr);
+    size_t prevIndex = 1;
+    size_t currIndex = 1;
+    size_t j = currIndex + (2 * prevIndex);
+    bool end = false;
+    bool overshot = false;
+    while(!end)
+    {   
+        if(j > b.size())
+        {
+            while(j > b.size())
+                j--;
+            overshot = true;
+        }
+        std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[j]);
+        mainChain.insert(mainIt,b[j]);
+        for(size_t i = j; i > currIndex; i--)
+        {
+            std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[i]);
+            mainChain.insert(mainIt,b[i]);
+        }
+        if(overshot)
+            end = true;
+        else{
+            int temp = currIndex;
+            prevIndex = temp;
+            currIndex = j;
+            j = currIndex + (2 * prevIndex);
+        }
+
+        // if(j <= b.size())
+        // {
+        //     std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[j]);
+        //     mainChain.insert(mainIt,b[j]);
+        //     for(size_t i = j; i >= currIndex; i--)
+        //     {
+        //         std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[i]);
+        //         mainChain.insert(mainIt,b[i]);
+        //     }
+        //     currIndex = j;
+        //     j = currIndex + (2 * prevIndex);
+        // }
+        // else
+        //     end = true;
+    }
+
+    if(hasStraggler)
     {
-        a.push_back(pairs[i].second);
-        b.push_back(pairs[i].first);
+        std::vector<int>::iterator addStraggler = std::lower_bound(mainChain.begin(),mainChain.end(), straggler);
+        mainChain.insert(addStraggler, straggler);
     }
-    
-    //pushing a to sorted;
-    a.sort();
-    for(std::list<int>::iterator begin = a.begin(); begin != a.end(); begin++)
-        sorted.push_back(*begin);
-    
-    //pushing b to sorted;
-    std::list<int>::iterator it;
-    for(std::list<int>::iterator bVal = b.begin(); bVal != b.end(); bVal++)
-    {
-        it = std::lower_bound(sorted.begin(),sorted.end(),*bVal);
-        sorted.insert(it,*bVal);
-    }
+    return mainChain;
+}
 
-    //push straggler to sorted if it exists
-    if(straggler != -1)
-    {
-        it = std::lower_bound(sorted.begin(),sorted.end(),straggler);
-        sorted.insert(it,straggler);
-    }
-    
-
-    // std::cout << "First: ";
-    // for(size_t i = 0; i < pairs.size(); i++)
-    //     std::cout << pairs[i].first << " ";
-    // std::cout << std::endl;
-    // std::cout << "Second: ";
-    // for(size_t i = 0; i < pairs.size(); i++)
-    //     std::cout << pairs[i].second << " ";
-    // std::cout << std::endl;
-    // std::cout << "Straggler: " << straggler << std::endl;
-
-    // std::cout  << "a: ";
-    // for(std::list<int>::iterator begin = a.begin(); begin != a.end(); begin++)
-    //     std::cout << *begin << " ";
-    // std::cout << std::endl;
-
-    std::cout << "Before: ";
-    for(std::list<int>::iterator begin = main.begin(); begin != main.end(); begin++)
-    {
-        std::cout << *begin << " ";
-    }
-    std::cout << std::endl;
-
-    std::cout << "After: ";
-    for(std::list<int>::iterator begin = sorted.begin(); begin != sorted.end(); begin++)
-        std::cout << *begin << " ";
-    std::cout << std::endl;
+void PmergeMe::doAlgorithm()
+{
+    _sortedVector = fordJohnsonAlgorithmVector(_mainVector);
+    for(std::vector<int>::iterator it = _sortedVector.begin(); it != _sortedVector.end(); it++)
+        std::cout << *it << " ";
 }

@@ -17,7 +17,7 @@ int main(int ac, char **av)
             
         }
         //do the algorithm
-        obj.fordJohnsonAlgorithm();
+        obj.doAlgorithm();
     }
     else
     {
