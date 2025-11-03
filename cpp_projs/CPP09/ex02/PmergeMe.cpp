@@ -74,69 +74,52 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(std::vector<int> main){
     std::vector<int> mainChain = fordJohnsonAlgorithmVector(a);
 
     if(!b.empty())
+        mainChain.insert(mainChain.begin(),b[0]);
+
+    std::vector<size_t> jacobsthal;
+    jacobsthal.push_back(0);
+    jacobsthal.push_back(1);
+
+    while(jacobsthal.back() < b.size())
     {
-        mainChain.insert(mainChain.begin(),b.front());
-        b.erase(b.begin());
+        size_t next = jacobsthal[jacobsthal.size() - 1] + (2 * jacobsthal[jacobsthal.size() - 2]);
+        jacobsthal.push_back(next);
     }
 
-    // std::vector<int>::iterator mainIt;
-    // for(std::vector<int>::iterator itB = b.begin(); itB != b.end();itB++)
-    // {
-    //     mainIt = std::lower_bound(mainChain.begin(),mainChain.end(),*itB);
-    //     mainChain.insert(mainIt,*itB);
-    // }
+    std::vector<size_t> insertOrder;
+    size_t lastInsert = 0;
 
-    //j = prev + (2 * curr);
-    size_t prevIndex = 1;
-    size_t currIndex = 1;
-    size_t j = currIndex + (2 * prevIndex);
-    bool end = false;
-    bool overshot = false;
-    while(!end)
-    {   
-        if(j > b.size())
-        {
-            while(j > b.size())
-                j--;
-            overshot = true;
-        }
-        std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[j]);
-        mainChain.insert(mainIt,b[j]);
-        for(size_t i = j; i > currIndex; i--)
-        {
-            std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[i]);
-            mainChain.insert(mainIt,b[i]);
-        }
-        if(overshot)
-            end = true;
-        else{
-            int temp = currIndex;
-            prevIndex = temp;
-            currIndex = j;
-            j = currIndex + (2 * prevIndex);
-        }
+    for(size_t i = 2; i < jacobsthal.size(); i++)
+    {
+        size_t currentJacob = jacobsthal[i];
+        size_t prevJacob = jacobsthal[i - 1];
 
-        // if(j <= b.size())
-        // {
-        //     std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[j]);
-        //     mainChain.insert(mainIt,b[j]);
-        //     for(size_t i = j; i >= currIndex; i--)
-        //     {
-        //         std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(), mainChain.end(),b[i]);
-        //         mainChain.insert(mainIt,b[i]);
-        //     }
-        //     currIndex = j;
-        //     j = currIndex + (2 * prevIndex);
-        // }
-        // else
-        //     end = true;
+        size_t start = std::min(currentJacob, b.size() - 1);
+        size_t end = prevJacob;
+
+        for(size_t i = start; i > end && i < b.size(); i--)
+        {
+            if(i < b.size() && i > lastInsert)
+                insertOrder.push_back(i);
+        }
+        if(start >= b.size() - 1)
+            break;
     }
+
+    for(size_t i = 0; i < insertOrder.size(); i++)
+    {
+        size_t index = insertOrder[i];
+        std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(),mainChain.end(), b[index]);
+        mainChain.insert(mainIt,b[index]);
+    }
+    
 
     if(hasStraggler)
     {
         std::vector<int>::iterator addStraggler = std::lower_bound(mainChain.begin(),mainChain.end(), straggler);
         mainChain.insert(addStraggler, straggler);
     }
+
     return mainChain;
 }
 
