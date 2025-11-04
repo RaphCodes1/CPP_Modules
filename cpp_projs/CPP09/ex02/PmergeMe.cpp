@@ -63,15 +63,31 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(std::vector<int> main){
             pairs.push_back(std::make_pair(firstVal, secondVal));
     }
 
-    std::vector<int> a;
+    std::vector<int> higherNumber;
     std::vector<int> b;
     for(std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
-    {
-        a.push_back(it->second);
-        b.push_back(it->first);
-    }
+        higherNumber.push_back(it->second);
 
-    std::vector<int> mainChain = fordJohnsonAlgorithmVector(a);
+    std::vector<int> mainChain = fordJohnsonAlgorithmVector(higherNumber);
+
+    higherNumber = mainChain;
+
+    //used to deal with duplicate numbers;
+    std::vector<char> used(pairs.size(), 0);
+
+    for(size_t i = 0; i < mainChain.size();i++)
+    {   
+        int lead = mainChain[i];
+        for(size_t k = 0; k < pairs.size(); k++)
+        {
+            if(!used[k] && pairs[k].second == lead)
+            {
+                b.push_back(pairs[k].first);
+                used[k] = 1;
+                break;
+            }
+        }
+    }
 
     if(!b.empty())
         mainChain.insert(mainChain.begin(),b[0]);
@@ -81,13 +97,15 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(std::vector<int> main){
     jacobsthal.push_back(1);
 
     while(jacobsthal.back() < b.size())
-    {
+    {   
         size_t next = jacobsthal[jacobsthal.size() - 1] + (2 * jacobsthal[jacobsthal.size() - 2]);
         jacobsthal.push_back(next);
     }
 
     std::vector<size_t> insertOrder;
-    size_t lastInsert = 0;
+
+    if(b.size() > 1)
+        insertOrder.push_back(1);
 
     for(size_t i = 2; i < jacobsthal.size(); i++)
     {
@@ -95,24 +113,27 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(std::vector<int> main){
         size_t prevJacob = jacobsthal[i - 1];
 
         size_t start = std::min(currentJacob, b.size() - 1);
-        size_t end = prevJacob;
 
-        for(size_t i = start; i > end && i < b.size(); i--)
+        for(size_t j = start; j > prevJacob; j--)
         {
-            if(i < b.size() && i > lastInsert)
-                insertOrder.push_back(i);
+            if(j < b.size())
+                insertOrder.push_back(j);
         }
         if(start >= b.size() - 1)
             break;
     }
+    for(size_t i = 0; i < insertOrder.size(); i++)
+        std::cout << insertOrder[i] << " ";
+    std::cout << std::endl;
 
     for(size_t i = 0; i < insertOrder.size(); i++)
     {
         size_t index = insertOrder[i];
-        std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(),mainChain.end(), b[index]);
+
+        std::vector<int>::iterator pairedPos = std::find(mainChain.begin(),mainChain.end(),higherNumber[index]);
+        std::vector<int>::iterator mainIt = std::lower_bound(mainChain.begin(),pairedPos, b[index]);
         mainChain.insert(mainIt,b[index]);
     }
-    
 
     if(hasStraggler)
     {
@@ -128,4 +149,5 @@ void PmergeMe::doAlgorithm()
     _sortedVector = fordJohnsonAlgorithmVector(_mainVector);
     for(std::vector<int>::iterator it = _sortedVector.begin(); it != _sortedVector.end(); it++)
         std::cout << *it << " ";
+    std::cout << std::endl;
 }
