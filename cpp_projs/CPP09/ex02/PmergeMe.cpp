@@ -36,7 +36,6 @@ bool PmergeMe::inputCheck(std::string &s)
 
 }
 
-
 std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(const std::vector<int>& input){
 
     std::vector<int> main = input;
@@ -255,7 +254,6 @@ void PmergeMe::doAlgorithm()
     for(std::vector<int>::iterator it = _mainVector.begin(); it != _mainVector.end(); it++)
         std::cout << *it << " ";
     std::cout << std::endl;
-
     
     clock_t startVec = clock();
     _sortedVector = fordJohnsonAlgorithmVector(_mainVector);
@@ -273,14 +271,8 @@ void PmergeMe::doAlgorithm()
     double elapsedSecsVec = static_cast<double>(endVec - startVec) / CLOCKS_PER_SEC;
     double elapsedSecsDeq = static_cast<double>(endDeq - startDeq) / CLOCKS_PER_SEC;
 
-    double usecsVec = elapsedSecsVec * 1000000.0;
-    double usecsDeq = elapsedSecsDeq * 1000000.0;
-
-    std::cout << "Time to process a range of " << _mainVector.size() << " elements with std::vector : " << usecsVec << " us" << std::endl;
-    std::cout << "Time to process a range of " << _mainDeque.size() << " elements with std::deque : " << usecsDeq << " us" << std::endl;
-
-    // std::cout << "Deque: ";
-    // for(std::deque<int>::iterator it = _sortedDeque.begin(); it != _sortedDeque.end(); it++)
-    //     std::cout << *it << " ";
-    // std::cout << std::endl;
+    std::cout << "Time to process a range of " << _mainVector.size() << " elements with std::vector : " << std::fixed 
+        << std::setprecision(6) << elapsedSecsVec << " us" << std::endl;
+    std::cout << "Time to process a range of " << _mainDeque.size() << " elements with std::deque : " << std::fixed 
+        << std::setprecision(6) << elapsedSecsDeq << " us" << std::endl;
 }
