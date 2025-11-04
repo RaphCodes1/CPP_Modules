@@ -7,11 +7,14 @@
 #include <sstream>
 #include <limits.h>
 #include <utility>
+#include <deque>
 
 class PmergeMe{
     private:
         std::vector<int> _mainVector;
         std::vector<int> _sortedVector;
+        std::deque<int> _mainDeque;
+        std::deque<int> _sortedDeque;
 
     public:
         PmergeMe();
@@ -21,6 +24,7 @@ class PmergeMe{
 
         bool inputCheck(std::string &s);
         std::vector<int> fordJohnsonAlgorithmVector(std::vector<int> input);
+        std::deque<int> fordJohnsonAlgorithmDeque(std::deque<int> input);
 
         void doAlgorithm();
 };
