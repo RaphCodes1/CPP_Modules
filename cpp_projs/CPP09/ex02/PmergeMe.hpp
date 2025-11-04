@@ -8,6 +8,7 @@
 #include <limits.h>
 #include <utility>
 #include <deque>
+#include <ctime>
 
 class PmergeMe{
     private:
@@ -23,8 +24,8 @@ class PmergeMe{
         PmergeMe &operator=(const PmergeMe &src);
 
         bool inputCheck(std::string &s);
-        std::vector<int> fordJohnsonAlgorithmVector(std::vector<int> input);
-        std::deque<int> fordJohnsonAlgorithmDeque(std::deque<int> input);
+        std::vector<int> fordJohnsonAlgorithmVector(const std::vector<int>& input);
+        std::deque<int> fordJohnsonAlgorithmDeque(const std::deque<int>& input);
 
         void doAlgorithm();
 };

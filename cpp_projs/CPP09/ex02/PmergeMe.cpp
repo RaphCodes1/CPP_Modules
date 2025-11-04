@@ -37,8 +37,9 @@ bool PmergeMe::inputCheck(std::string &s)
 }
 
 
-std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(std::vector<int> main){
+std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(const std::vector<int>& input){
 
+    std::vector<int> main = input;
     if(main.size() < 2)
         return main;
 
@@ -142,8 +143,9 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(std::vector<int> main){
     return mainChain;
 }
 
-std::deque<int> PmergeMe::fordJohnsonAlgorithmDeque(std::deque<int> main){
+std::deque<int> PmergeMe::fordJohnsonAlgorithmDeque(const std::deque<int>& input){
 
+    std::deque<int> main = input;
     if(main.size() < 2)
         return main;
 
@@ -254,15 +256,31 @@ void PmergeMe::doAlgorithm()
         std::cout << *it << " ";
     std::cout << std::endl;
 
-    std::cout << "Vector: ";
+    
+    clock_t startVec = clock();
     _sortedVector = fordJohnsonAlgorithmVector(_mainVector);
+    clock_t endVec = clock();
+    
+    clock_t startDeq = clock();
+    _sortedDeque = fordJohnsonAlgorithmDeque(_mainDeque);
+    clock_t endDeq = clock();
+    
+    std::cout << "After: ";
     for(std::vector<int>::iterator it = _sortedVector.begin(); it != _sortedVector.end(); it++)
         std::cout << *it << " ";
     std::cout << std::endl;
 
-    std::cout << "Deque: ";
-    _sortedDeque = fordJohnsonAlgorithmDeque(_mainDeque);
-    for(std::deque<int>::iterator it = _sortedDeque.begin(); it != _sortedDeque.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
+    double elapsedSecsVec = static_cast<double>(endVec - startVec) / CLOCKS_PER_SEC;
+    double elapsedSecsDeq = static_cast<double>(endDeq - startDeq) / CLOCKS_PER_SEC;
+
+    double usecsVec = elapsedSecsVec * 1000000.0;
+    double usecsDeq = elapsedSecsDeq * 1000000.0;
+
+    std::cout << "Time to process a range of " << _mainVector.size() << " elements with std::vector : " << usecsVec << " us" << std::endl;
+    std::cout << "Time to process a range of " << _mainDeque.size() << " elements with std::deque : " << usecsDeq << " us" << std::endl;
+
+    // std::cout << "Deque: ";
+    // for(std::deque<int>::iterator it = _sortedDeque.begin(); it != _sortedDeque.end(); it++)
+    //     std::cout << *it << " ";
+    // std::cout << std::endl;
 }
