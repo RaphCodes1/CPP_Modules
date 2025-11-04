@@ -249,6 +249,11 @@ std::deque<int> PmergeMe::fordJohnsonAlgorithmDeque(std::deque<int> main){
 
 void PmergeMe::doAlgorithm()
 {   
+    std::cout << "Before: ";
+    for(std::vector<int>::iterator it = _mainVector.begin(); it != _mainVector.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+
     std::cout << "Vector: ";
     _sortedVector = fordJohnsonAlgorithmVector(_mainVector);
     for(std::vector<int>::iterator it = _sortedVector.begin(); it != _sortedVector.end(); it++)
