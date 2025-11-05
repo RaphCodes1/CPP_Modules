@@ -6,7 +6,6 @@ int main(int ac, char **av)
     {   
         if(!btcObj.extractInput(av[1]))
             return (1);
-        // btcObj.printInput();
         return (0);
     }
     else

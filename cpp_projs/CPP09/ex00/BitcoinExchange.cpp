@@ -78,7 +78,9 @@ void trimSpaces(std::string &s){
 
 double Btc::finder(std::string val){
     std::map<std::string, double>::iterator findKey = _data.lower_bound(val);
-    if(findKey != _data.begin()){
+    if(findKey != _data.end() && findKey->first == val)
+        return findKey->second;
+    else if(findKey != _data.begin()){
         --findKey;
     } else {
         std::cout << "Error: " << _data.begin()->first << " => No date earlier found." << std::endl;
@@ -252,7 +254,7 @@ bool Btc::extractInput(std::string file){
             std::cerr << "Error: Too large of a number." << std::endl;
             continue;
         }
-        else if(finder(key) == - 1)
+        else if(finder(key) == -1)
             continue;
         double mapNum = finder(key);
         std::cout << key << " => " << num << " = " << num * mapNum << std::endl;
