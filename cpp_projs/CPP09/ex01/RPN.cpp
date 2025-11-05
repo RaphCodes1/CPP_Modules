@@ -5,13 +5,13 @@ RPN::RPN(){}
 RPN::~RPN(){}
 
 RPN::RPN(const RPN& src){
-    *this = src;
+    this->queue = src.queue;
 }
 
 RPN &RPN::operator=(const RPN& src){
     if(this != &src)
     {
-        *this = src;
+        this->queue = src.queue;
     }
     return *this;
 }
@@ -26,6 +26,8 @@ bool checkValid(std::string &s)
     for(size_t i = 0; i < s.length(); i++)
     {
         if(s[i] >='0' && s[i] <= '9')
+            continue;
+        else if(s[i] == '-' && (s[i + 1] >='0' && s[i + 1] <= '9'))
             continue;
         else if(s[i] == ' ')
             continue;
@@ -67,6 +69,11 @@ bool RPN::RPNprocess(std::string s){
             continue;
         else if(s[i] >= '0' && s[i] <= '9')
             this->queue.push(s[i] - '0');
+        else if(s[i] == '-' && (s[i + 1] >= '0' && s[i + 1] <= '9'))
+        {
+            this->queue.push((s[i + 1] - '0') * -1);
+            i += 2;
+        }
         else if(s[i] == '+' || s[i] == '-' || s[i] == '/' || s[i] == '*')
         {   
             if(queue.size() < 2){
