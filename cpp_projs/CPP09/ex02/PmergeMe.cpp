@@ -103,6 +103,11 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(const std::vector<int>& in
         jacobsthal.push_back(next);
     }
 
+    std::cout << "Jacosthal numbers: ";
+    for(std::vector<size_t>::iterator it = jacobsthal.begin(); it != jacobsthal.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+
     std::vector<size_t> insertOrder;
 
     if(b.size() > 1)
@@ -123,6 +128,11 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(const std::vector<int>& in
         if(start >= b.size() - 1)
             break;
     }
+
+    std::cout << "insert order: ";
+    for(std::vector<size_t>::iterator it = insertOrder.begin(); it != insertOrder.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
    
     for(size_t i = 0; i < insertOrder.size(); i++)
     {
