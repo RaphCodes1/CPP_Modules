@@ -87,7 +87,7 @@ bool RPN::RPNprocess(std::string s){
                 queue.pop();
                 numOne = queue.top();
                 queue.pop();
-                std::cout  << numOne  << " " << operation << " " << numTwo << std::endl;
+                // std::cout  << numOne  << " " << operation << " " << numTwo << std::endl;
                 res = operationDone(operation,numOne,numTwo);
                 queue.push(res);
                 operation = '0';

@@ -5,7 +5,9 @@ PmergeMe::PmergeMe(){};
 PmergeMe::~PmergeMe(){};
 
 PmergeMe::PmergeMe(const PmergeMe& src){
-    *this = src;
+    this->_mainDeque = src._mainDeque;
+    this->_mainVector = src._mainVector;
+
 }
 
 PmergeMe &PmergeMe::operator=(const PmergeMe& src){
@@ -103,10 +105,10 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(const std::vector<int>& in
         jacobsthal.push_back(next);
     }
 
-    std::cout << "Jacosthal numbers: ";
-    for(std::vector<size_t>::iterator it = jacobsthal.begin(); it != jacobsthal.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
+    // std::cout << "Jacosthal numbers: ";
+    // for(std::vector<size_t>::iterator it = jacobsthal.begin(); it != jacobsthal.end(); it++)
+    //     std::cout << *it << " ";
+    // std::cout << std::endl;
 
     std::vector<size_t> insertOrder;
 
@@ -129,10 +131,10 @@ std::vector<int> PmergeMe::fordJohnsonAlgorithmVector(const std::vector<int>& in
             break;
     }
 
-    std::cout << "insert order: ";
-    for(std::vector<size_t>::iterator it = insertOrder.begin(); it != insertOrder.end(); it++)
-        std::cout << *it << " ";
-    std::cout << std::endl;
+    // std::cout << "insert order: ";
+    // for(std::vector<size_t>::iterator it = insertOrder.begin(); it != insertOrder.end(); it++)
+    //     std::cout << *it << " ";
+    // std::cout << std::endl;
    
     for(size_t i = 0; i < insertOrder.size(); i++)
     {
@@ -246,6 +248,7 @@ std::deque<int> PmergeMe::fordJohnsonAlgorithmDeque(const std::deque<int>& input
 
         std::deque<int>::iterator pairedPos = std::find(mainChain.begin(),mainChain.end(),higherNumber[index]);
         std::deque<int>::iterator mainIt = std::lower_bound(mainChain.begin(),pairedPos, b[index]);
+
         mainChain.insert(mainIt,b[index]);
     }
 
